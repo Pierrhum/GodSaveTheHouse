@@ -6,6 +6,7 @@
 #define LED_3_PIN 8
 #define BUTTON_PIN A0
 
+
 float distance;
 float duration;
 
@@ -22,9 +23,10 @@ unsigned long current_time_micros;
 unsigned long duration_micro_for_next_state = 0;
 unsigned long time_micro_since_previous_state = 0;
 
-int btnPressedPrevValue = 0;
-bool btnPressed = false;
-bool btnIsDown = false;
+int pressureBtnValue = 0;
+int pressureBtnPrevValue = 0;
+bool pressureBtnPressed = false;
+bool pressureBtnIsDown = false;
 enum Sensor_State {
   START_SEND,
   STOP_SEND,
@@ -47,7 +49,8 @@ void setup() {
 
    //Init btn
  	pinMode(BUTTON_PIN, INPUT_PULLUP);
-  btnPressedPrevValue = analogRead(BUTTON_PIN);
+  pressureBtnPrevValue = analogRead(BUTTON_PIN);
+  pressureBtnValue = analogRead(BUTTON_PIN);
 
 
 }
@@ -57,7 +60,9 @@ void loop() {
   current_time_micros = micros();
   distanceSensorTest();
   testPushBtn();
+  sendMsg();
 }
+
 void distanceSensorTest(){
 
   // put your main code here, to run repeatedly:
@@ -129,6 +134,7 @@ void  triggerLed(int pin){
     last_time_buzzed = current_time;
   }
 }
+
 void turnOffLed(){
   if(last_time_buzzed + tone_duration < current_time){
     digitalWrite(last_pin_used, LOW);
@@ -139,16 +145,22 @@ void turnOffLed(){
 
 void testPushBtn() {
   // Read pushbutton
-  int btn = analogRead(BUTTON_PIN);
-  btnPressed = false;
-  if (btn < 200 && !btnIsDown){
-    btnPressed = true;
-    btnIsDown = true;
-     triggerLed(LED_BUILTIN);
+  pressureBtnValue = analogRead(BUTTON_PIN);
+  pressureBtnPressed= false;
+  if (pressureBtnValue < 200 && !pressureBtnIsDown){
+    pressureBtnPressed= true;
+    pressureBtnIsDown = true;
+    //triggerLed(LED_BUILTIN);
   }
-  else if(btn > 500)
+  else if(pressureBtnValue > 500)
   {
-    btnIsDown = false;
+    pressureBtnIsDown = false;
   }
  
+}
+
+void sendMsg(){
+  int pressureBtnPress = pressureBtnIsDown?1:0;
+  String msg = (String)distance +";"+ (String)pressureBtnValue+";"+ (String)pressureBtnPress +";";
+  Serial.println(msg);
 }
