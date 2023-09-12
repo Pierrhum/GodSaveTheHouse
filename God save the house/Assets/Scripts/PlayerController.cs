@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public float WaterCapacity;
     public Sponge sponge;
 
     private Vector2 inputMovement;
