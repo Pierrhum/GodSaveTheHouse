@@ -6,18 +6,17 @@ using UnityEngine;
 public enum HouseState { Normal, Burnt, Overflowed, Saved }
 public class House : MonoBehaviour
 {
+    public List<Room> Rooms;
     [System.NonSerialized] public float lifeTimer = 0f;
     [System.NonSerialized] public HouseState State = HouseState.Normal;
-    private MeshRenderer Mesh;
     
-    private void Awake()
-    {
-        Mesh = GetComponent<MeshRenderer>();
-    }
+    private int CurrentRoom = -1;
+    private float RoomBurningTime;
 
     private void Start()
     {
-        StartCoroutine(HouseCoroutine(1));
+        RoomBurningTime = GameManager.Instance.BurningTime / Rooms.Count;
+        StartCoroutine(HouseCoroutine(2));
     }
 
     public bool isSavedRange()
@@ -36,29 +35,25 @@ public class House : MonoBehaviour
             if (lifeTimer <= -GameManager.Instance.OverflowLimit)
                 State = HouseState.Overflowed;
             // Still burning
-            else if (lifeTimer < GameManager.Instance.BurningTime)
-            {
                 lifeTimer += Time.deltaTime;
-                Mesh.material.color = Color.Lerp(Color.grey, Color.red, lifeTimer / GameManager.Instance.BurningTime);
+                if (lifeTimer > (CurrentRoom+1) * RoomBurningTime)
+                {
+                    // First room
+                    if(CurrentRoom != -1) Rooms[CurrentRoom].EndBurning(false);
+                    CurrentRoom++;
+                    // Burnt
+                    if(CurrentRoom >= Rooms.Count) State = HouseState.Burnt;
+                    else Rooms[CurrentRoom].StartBurning();
+                }
                 yield return new WaitForSeconds(Time.deltaTime);
-            }
-            // Burnt
-            else
-                State = HouseState.Burnt;
         }
 
         // Overflowed : Game Over
         while (State == HouseState.Overflowed && lifeTimer < -GameManager.Instance.OverflowLimit)
         {
             lifeTimer -= Time.deltaTime / 5f;
-            Mesh.material.color = Color.Lerp(Color.grey, Color.blue, (lifeTimer / -3));
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        
-        // Temporary
-        if(State == HouseState.Burnt) Mesh.material.color = Color.red;
-        if(State == HouseState.Saved) Mesh.material.color = Color.grey;
-        if(State == HouseState.Overflowed) Mesh.material.color = Color.blue;
     }
 
     private void OnTriggerEnter(Collider other)

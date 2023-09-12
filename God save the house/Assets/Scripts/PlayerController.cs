@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,9 @@ public class PlayerController : MonoBehaviour
 {
     public Sponge sponge;
 
+    [Header("SFX")] 
+    public StudioEventEmitter SpongePressed;
+    
     private Vector2 inputMovement;
 
     public void Move(InputAction.CallbackContext context)
@@ -17,8 +21,15 @@ public class PlayerController : MonoBehaviour
     
     public void Press(InputAction.CallbackContext context)
     {
-        if(context.canceled || context.started)
-            sponge.SetRain(context.started);
+        if (context.canceled)
+        {
+            sponge.SetRain(false);
+        }
+        else if (context.started)
+        {
+            sponge.SetRain(true);
+            SpongePressed.Play();
+        }
     }
     
     public void RefillWater(InputAction.CallbackContext context)

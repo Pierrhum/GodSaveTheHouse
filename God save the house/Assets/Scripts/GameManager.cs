@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [Header("Houses")] 
     public float BurningTime = 18f;
     public float OverflowLimit = 1f;
+    public List<GameObject> FireParticles;
+    public GameObject SmokeParticle;
+    public GameObject ExplosionParticle;
 
     [Header("Debug")] 
     public float PlayerSpeed = 1f;
@@ -30,5 +33,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (_instance == null) _instance = this;
+    }
+
+    public GameObject GetRandomFire()
+    {
+        int random = Random.Range(0, FireParticles.Count);
+        return FireParticles[random];
     }
 }

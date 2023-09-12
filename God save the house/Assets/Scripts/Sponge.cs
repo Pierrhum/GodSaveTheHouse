@@ -1,15 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class Sponge : MonoBehaviour
 {
+    [Header("Components")]
     public static House TargetHouse;
     public SpriteRenderer CloudSprite;
     public Collider RainCollider;
     public ParticleSystem RainVFX;
     public float WaterCapacity;
+
     
     private Coroutine ConsumeCoroutine;
     private Coroutine RefillCoroutine;
