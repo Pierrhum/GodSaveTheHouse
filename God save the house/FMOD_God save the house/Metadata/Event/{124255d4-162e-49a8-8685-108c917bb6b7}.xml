@@ -136,7 +136,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{dee1f718-dac8-4820-b549-1df8c2c6eb6d}">
 		<property name="name">
-			<value>Audio 2</value>
+			<value>STOP SPONGEREFILL</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{20bad555-18a4-4fc9-9c7e-3852847ccce2}</destination>
