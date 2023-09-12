@@ -1,3 +1,5 @@
+#include <CapacitiveSensor.h>
+
 #define BUZZER_PIN 3
 #define TRIGGER_PIN 13
 #define ECHO_PIN 12
@@ -5,6 +7,7 @@
 #define LED_2_PIN 9
 #define LED_3_PIN 8
 #define BUTTON_PIN A0
+
 
 
 float distance;
@@ -27,6 +30,11 @@ int pressureBtnValue = 0;
 int pressureBtnPrevValue = 0;
 bool pressureBtnPressed = false;
 bool pressureBtnIsDown = false;
+
+bool lakeBtnIsDown = false;
+
+unsigned long last_time_msg_sent =0;
+
 enum Sensor_State {
   START_SEND,
   STOP_SEND,
@@ -35,8 +43,13 @@ enum Sensor_State {
 }; 
 Sensor_State current_sensor_state = START_SEND;
 
+
+CapacitiveSensor cs_4_2 = CapacitiveSensor(4,2); // 10 megohm resistor between pins 4 & 2, pin 2 is sensor pin, add wire, foil
+
 void setup() {
   // put your setup code here, to run once:
+  //cs_4_2.set_CS_AutocaL_Millis(0xFFFFFFFF); // turn off autocalibrate on channel 1 - just as an example 
+  cs_4_2.set_CS_Timeout_Millis(100);
   Serial.begin(9600);
   pinMode(TRIGGER_PIN,OUTPUT);
   pinMode(ECHO_PIN, INPUT);
@@ -54,13 +67,22 @@ void setup() {
 
 
 }
-
 void loop() {
   current_time = millis();
   current_time_micros = micros();
+ 
+
+// arbitrary delay to limit data to serial port 
   distanceSensorTest();
   testPushBtn();
+  testLakeButton();
   sendMsg();
+}
+ long val =0;
+void testLakeButton(){
+  val= cs_4_2.capacitiveSensorRaw(20);
+  
+  lakeBtnIsDown = val != -2;
 }
 
 void distanceSensorTest(){
@@ -160,7 +182,12 @@ void testPushBtn() {
 }
 
 void sendMsg(){
-  int pressureBtnPress = pressureBtnIsDown?1:0;
-  String msg = (String)distance +";"+ (String)pressureBtnValue+";"+ (String)pressureBtnPress +";";
-  Serial.println(msg);
+  if(last_time_msg_sent + 100 < current_time){
+    int pressureBtnPress = pressureBtnIsDown?1:0;
+    int lakeBtnPress = lakeBtnIsDown?1:0;
+    String msg = (String)distance +";"+ (String)pressureBtnValue+";"+ (String)pressureBtnPress +";" +(String)lakeBtnPress + ";";
+    Serial.println(msg);
+    last_time_msg_sent = current_time;
+ }
+ 
 }
