@@ -152,9 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2d2413ea012e848a8f5c29503ef7c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 1
+  WaterCapacity: 6
+  WaterRefill: 3.6
   BurningTime: 18
   OverflowLimit: 3
+  PlayerSpeed: 2
 --- !u!4 &65294255
 Transform:
   m_ObjectHideFlags: 0
@@ -1011,5 +1013,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f706017b77f0c49a862b0aa41e7d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaterCapacity: 0
   sponge: {fileID: 341191338}
