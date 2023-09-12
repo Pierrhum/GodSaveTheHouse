@@ -6,10 +6,11 @@ using UnityEngine;
 public class Sponge : MonoBehaviour
 {
     public static House TargetHouse;
+    public SpriteRenderer CloudSprite;
     public Collider RainCollider;
-    [System.NonSerialized] public float WaterCapacity;
+    public ParticleSystem RainVFX;
+    public float WaterCapacity;
     
-    private MeshRenderer Mesh;
     private Coroutine ConsumeCoroutine;
     private Coroutine RefillCoroutine;
     private bool isRaining = false;
@@ -17,8 +18,11 @@ public class Sponge : MonoBehaviour
 
     private void Awake()
     {
-        Mesh = GetComponent<MeshRenderer>();
         RainCollider.enabled = false;
+    }
+
+    private void Start()
+    {
         WaterCapacity = GameManager.Instance.WaterCapacity;
     }
 
@@ -26,63 +30,58 @@ public class Sponge : MonoBehaviour
     {
         transform.position += DeltaPos;
     }
-    public void ToggleRain()
+    public void SetRain(bool Activate)
     {
-        isRaining = !isRaining;
+        isRaining = Activate;
         RainCollider.enabled = isRaining && WaterCapacity > 0;
         
-        if (WaterCapacity > 0)
+        if (isRaining)
         {
-            if (isRaining)
+            if (WaterCapacity > 0)
             {
+                RainVFX.Play();
                 ConsumeCoroutine = StartCoroutine(ConsumeWater());
             }
-            else
-            {
-                StopCoroutine(ConsumeCoroutine);
-                Mesh.material.color = Color.grey; // Rain VFX
-                if (TargetHouse && TargetHouse.isSavedRange())
-                    TargetHouse.State = HouseState.Saved;
-            }
+        }
+        else
+        {
+            RainVFX.Stop();
+            StopCoroutine(ConsumeCoroutine);
+            if (TargetHouse && TargetHouse.isSavedRange())
+                TargetHouse.State = HouseState.Saved;
         }
     }
 
-    public void ToggleRefill()
+    public void SetRefill(bool Activate)
     {
-        isRefilling = !isRefilling;
+        isRefilling = Activate;
 
-        if (WaterCapacity < GameManager.Instance.WaterCapacity)
+        if (isRefilling)
         {
-            if (isRefilling)
+            if(WaterCapacity < GameManager.Instance.WaterCapacity)
                 RefillCoroutine = StartCoroutine(RefillWater());
-            else
-            {
-                StopCoroutine(RefillCoroutine);
-                Mesh.material.color = Color.grey;
-            }
         }
+        else
+            StopCoroutine(RefillCoroutine);
     }
 
     private IEnumerator ConsumeWater()
     {
         while (WaterCapacity > 0)
         {
-            Mesh.material.color = Color.Lerp(Color.grey, Color.blue, WaterCapacity / GameManager.Instance.WaterCapacity); // Rain VFX
             WaterCapacity -= Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        ToggleRain();
+        SetRain(false);
     }
     
     private IEnumerator RefillWater()
     {
         while (WaterCapacity < GameManager.Instance.WaterCapacity)
         {
-            Mesh.material.color = Color.Lerp(Color.grey, Color.blue, WaterCapacity / GameManager.Instance.WaterCapacity); // Rain VFX
             WaterCapacity += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        Mesh.material.color = Color.grey;
-        ToggleRefill();
+        SetRefill(false);
     }
 }

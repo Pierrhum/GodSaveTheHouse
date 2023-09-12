@@ -18,13 +18,13 @@ public class PlayerController : MonoBehaviour
     public void Press(InputAction.CallbackContext context)
     {
         if(context.canceled || context.started)
-            sponge.ToggleRain();
+            sponge.SetRain(context.started);
     }
     
     public void RefillWater(InputAction.CallbackContext context)
     {
         if(context.canceled || context.started)
-            sponge.ToggleRefill();
+            sponge.SetRefill(context.started);
     }
 
     private void Update()
