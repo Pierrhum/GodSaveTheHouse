@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{5ea46be5-5bc9-4260-9940-89e140238f54}">
+		<property name="assetPath">
+			<value>Sponge_Pressed_02.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.17210416666666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26ea96ea-23fc-4846-beae-d60e40b64fdd}</destination>
+		</relationship>
+	</object>
+</objects>

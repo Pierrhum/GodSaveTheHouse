@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{76f244c2-bf2f-4c0a-96c1-f21df70addd2}">
+		<property name="name">
+			<value>RainIntensity</value>
+		</property>
+		<relationship name="folder">
+			<destination>{56cc55d0-7774-4ceb-a854-1f3709fa9e73}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{5581d654-2683-42eb-b3c4-3ca61e1cb722}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{5581d654-2683-42eb-b3c4-3ca61e1cb722}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.19999998807907104</value>
+		</property>
+		<property name="seekSpeedAsymmetric">
+			<value>true</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
