@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{8fc64432-3df8-4bb7-92bb-8e4686290dfd}">
+		<property name="name">
+			<value>CloudPosition</value>
+		</property>
+		<relationship name="folder">
+			<destination>{56cc55d0-7774-4ceb-a854-1f3709fa9e73}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{8c628210-bf4e-4e66-8e3f-056cf96721a0}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{8c628210-bf4e-4e66-8e3f-056cf96721a0}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
