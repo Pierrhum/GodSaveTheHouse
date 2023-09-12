@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{3913d1d3-8f64-4bfe-aa8d-dd6518f7d458}">
+		<property name="assetPath">
+			<value>Sponge_Raining_03.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>15.776020833333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26ea96ea-23fc-4846-beae-d60e40b64fdd}</destination>
+		</relationship>
+	</object>
+</objects>
