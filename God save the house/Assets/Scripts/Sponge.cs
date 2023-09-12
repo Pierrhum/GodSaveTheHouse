@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Sponge : MonoBehaviour
 {
+    public static House TargetHouse;
     public Collider RainCollider;
     private MeshRenderer Mesh;
     private bool isRaining = false;
@@ -25,8 +26,12 @@ public class Sponge : MonoBehaviour
         RainCollider.enabled = isRaining;
         
         if (isRaining)
-            Mesh.material.color = Color.blue;
+            Mesh.material.color = Color.blue; // Rain VFX
         else
-            Mesh.material.color = Color.grey;
+        {
+            Mesh.material.color = Color.grey; // Rain VFX
+            if (TargetHouse && TargetHouse.isSavedRange())
+                TargetHouse.State = HouseState.Saved;
+        }
     }
 }

@@ -6,9 +6,9 @@ using UnityEngine;
 public enum HouseState { Normal, Burnt, Overflowed, Saved }
 public class House : MonoBehaviour
 {
-    [System.NonSerialized] public float lifeState = 0f;
+    [System.NonSerialized] public float lifeTimer = 0f;
+    [System.NonSerialized] public HouseState State = HouseState.Normal;
     private MeshRenderer Mesh;
-    private HouseState State = HouseState.Normal;
     
     private void Awake()
     {
@@ -17,10 +17,15 @@ public class House : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(HouseCoroutine(1, 10));
+        StartCoroutine(HouseCoroutine(1));
     }
 
-    private IEnumerator HouseCoroutine(float startDelay, float burningTime)
+    public bool isSavedRange()
+    {
+        return lifeTimer < 0 && lifeTimer >= -GameManager.Instance.OverflowLimit;
+    }
+
+    private IEnumerator HouseCoroutine(float startDelay)
     {
         yield return new WaitForSeconds(startDelay);
 
@@ -28,13 +33,13 @@ public class House : MonoBehaviour
         while (State == HouseState.Normal)
         {
             // Starts overflow
-            if (lifeState <= -.2f)
+            if (lifeTimer <= -GameManager.Instance.OverflowLimit)
                 State = HouseState.Overflowed;
             // Still burning
-            else if (lifeState < 1)
+            else if (lifeTimer < GameManager.Instance.BurningTime)
             {
-                lifeState += Time.deltaTime / burningTime;
-                Mesh.material.color = Color.Lerp(Color.grey, Color.red, lifeState);
+                lifeTimer += Time.deltaTime;
+                Mesh.material.color = Color.Lerp(Color.grey, Color.red, lifeTimer / GameManager.Instance.BurningTime);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             // Burnt
@@ -42,30 +47,38 @@ public class House : MonoBehaviour
                 State = HouseState.Burnt;
         }
 
-        // Overflowed
-        while (State == HouseState.Overflowed && lifeState < -0.2)
+        // Overflowed : Game Over
+        while (State == HouseState.Overflowed && lifeTimer < -GameManager.Instance.OverflowLimit)
         {
-            Debug.Log("Overflowed");
-            lifeState -= Time.deltaTime / 5f;
-            Mesh.material.color = Color.Lerp(Color.grey, Color.blue, (lifeState / -1));
+            lifeTimer -= Time.deltaTime / 5f;
+            Mesh.material.color = Color.Lerp(Color.grey, Color.blue, (lifeTimer / -3));
             yield return new WaitForSeconds(Time.deltaTime);
         }
         
+        // Temporary
         if(State == HouseState.Burnt) Mesh.material.color = Color.red;
         if(State == HouseState.Saved) Mesh.material.color = Color.grey;
         if(State == HouseState.Overflowed) Mesh.material.color = Color.blue;
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Sponge.TargetHouse = this;
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        lifeState -= 4 * Time.deltaTime / 10;
+        lifeTimer -= 4 * Time.deltaTime;
+        if (lifeTimer < 0)
+            Debug.Log(lifeTimer.ToString());
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (lifeState <= 0)
-            if(lifeState < -0.2) State = HouseState.Overflowed; 
+        if (lifeTimer <= 0)
+            if(lifeTimer < -GameManager.Instance.OverflowLimit) State = HouseState.Overflowed; 
             else State = HouseState.Saved;
         Debug.Log(((int)State).ToString());
+        Sponge.TargetHouse = null;
     }
 }
