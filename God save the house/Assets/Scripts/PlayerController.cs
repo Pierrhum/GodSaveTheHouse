@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float WaterCapacity;
     public Sponge sponge;
 
     private Vector2 inputMovement;
@@ -17,6 +16,12 @@ public class PlayerController : MonoBehaviour
     }
     
     public void Press(InputAction.CallbackContext context)
+    {
+        if(context.canceled || context.started)
+            sponge.ToggleRain();
+    }
+    
+    public void RefillWater(InputAction.CallbackContext context)
     {
         if(context.canceled || context.started)
             sponge.ToggleRain();

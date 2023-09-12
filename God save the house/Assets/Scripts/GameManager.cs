@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Player")] 
-    public float PlayerSpeed = 1f;
+    [Header("Sponge")] 
+    public float WaterCapacity = 6f;
+    public float WaterRefill = 3.6f;
     
     [Header("Houses")] 
     public float BurningTime = 18f;
     public float OverflowLimit = 1f;
 
+    [Header("Debug")] 
+    public float PlayerSpeed = 1f;
+    
     [System.NonSerialized] public Sponge Sponge;
     // Singleton
     private static GameManager _instance;
