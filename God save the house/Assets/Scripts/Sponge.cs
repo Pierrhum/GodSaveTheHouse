@@ -11,7 +11,9 @@ public class Sponge : MonoBehaviour
     
     private MeshRenderer Mesh;
     private Coroutine ConsumeCoroutine;
+    private Coroutine RefillCoroutine;
     private bool isRaining = false;
+    private bool isRefilling = false;
 
     private void Awake()
     {
@@ -43,7 +45,22 @@ public class Sponge : MonoBehaviour
                     TargetHouse.State = HouseState.Saved;
             }
         }
-        
+    }
+
+    public void ToggleRefill()
+    {
+        isRefilling = !isRefilling;
+
+        if (WaterCapacity < GameManager.Instance.WaterCapacity)
+        {
+            if (isRefilling)
+                RefillCoroutine = StartCoroutine(RefillWater());
+            else
+            {
+                StopCoroutine(RefillCoroutine);
+                Mesh.material.color = Color.grey;
+            }
+        }
     }
 
     private IEnumerator ConsumeWater()
@@ -55,5 +72,17 @@ public class Sponge : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
         ToggleRain();
+    }
+    
+    private IEnumerator RefillWater()
+    {
+        while (WaterCapacity < GameManager.Instance.WaterCapacity)
+        {
+            Mesh.material.color = Color.Lerp(Color.grey, Color.blue, WaterCapacity / GameManager.Instance.WaterCapacity); // Rain VFX
+            WaterCapacity += Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        Mesh.material.color = Color.grey;
+        ToggleRefill();
     }
 }

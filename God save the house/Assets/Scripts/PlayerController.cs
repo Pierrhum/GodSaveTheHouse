@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public void RefillWater(InputAction.CallbackContext context)
     {
         if(context.canceled || context.started)
-            sponge.ToggleRain();
+            sponge.ToggleRefill();
     }
 
     private void Update()
