@@ -3,28 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum HouseState { Normal, Burnt, Overflowed, Saved }
+public enum HouseState { Normal, Burning, Overflowing, Saved, Burnt, Drown }
 public class House : MonoBehaviour
 {
     public List<Room> Rooms;
-    [System.NonSerialized] public float lifeTimer = 0f;
+    //[System.NonSerialized] 
+    public float burnTimer = 0f;
+    //[System.NonSerialized] 
+    public float waterTimer = 0f;
     [System.NonSerialized] public HouseState State = HouseState.Normal;
     
     private int CurrentRoom = -1;
-    private float RoomBurningTime;
 
     private void Start()
     {
-        RoomBurningTime = GameManager.Instance.BurningTime / Rooms.Count;
-        StartCoroutine(HouseCoroutine(2));
+        StartCoroutine(BurnCoroutine(2));
     }
 
+    public bool isOverflowedRange()
+    {
+        return waterTimer > GameManager.Instance.SaveTime + GameManager.Instance.OverflowLimit;
+    }
+    
     public bool isSavedRange()
     {
-        return lifeTimer < 0 && lifeTimer >= -GameManager.Instance.OverflowLimit;
+        return waterTimer >= GameManager.Instance.SaveTime && !isOverflowedRange();
     }
 
-    private IEnumerator HouseCoroutine(float startDelay)
+    private IEnumerator BurnCoroutine(float startDelay)
     {
         yield return new WaitForSeconds(startDelay);
 
@@ -32,11 +38,13 @@ public class House : MonoBehaviour
         while (State == HouseState.Normal)
         {
             // Starts overflow
-            if (lifeTimer <= -GameManager.Instance.OverflowLimit)
-                State = HouseState.Overflowed;
+            if (isOverflowedRange())
+                State = HouseState.Overflowing;
             // Still burning
-                lifeTimer += Time.deltaTime;
-                if (lifeTimer > (CurrentRoom+1) * RoomBurningTime)
+            else
+            {
+                burnTimer += Time.deltaTime;
+                if (burnTimer >= (CurrentRoom+1) * GameManager.Instance.BurningTime)
                 {
                     // First room
                     if(CurrentRoom != -1) Rooms[CurrentRoom].EndBurning(false);
@@ -46,34 +54,47 @@ public class House : MonoBehaviour
                     else Rooms[CurrentRoom].StartBurning();
                 }
                 yield return new WaitForSeconds(Time.deltaTime);
+            }
         }
 
-        // Overflowed : Game Over
-        while (State == HouseState.Overflowed && lifeTimer < -GameManager.Instance.OverflowLimit)
-        {
-            lifeTimer -= Time.deltaTime / 5f;
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
+        if (State == HouseState.Overflowing) StartCoroutine(OverflowCoroutine());
+        if (State == HouseState.Saved) Debug.Log(("Saved"));
     }
 
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator OverflowCoroutine()
     {
-        Sponge.TargetHouse = this;
+        while (State == HouseState.Overflowing)
+        {
+            if(waterTimer > GameManager.Instance.SaveTime + GameManager.Instance.OverflowTime)
+                State = HouseState.Drown;
+            else
+            {
+                GetComponent<SpriteRenderer>().color = Color.Lerp(Color.white, Color.blue, waterTimer / (GameManager.Instance.SaveTime + GameManager.Instance.OverflowTime));
+                waterTimer += Time.deltaTime;
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        lifeTimer -= 4 * Time.deltaTime;
-        if (lifeTimer < 0)
-            Debug.Log(lifeTimer.ToString());
+        if (CurrentRoom >= 0)
+        {
+            Sponge.TargetHouse = this;
+            waterTimer += Time.deltaTime;
+            if(waterTimer >= GameManager.Instance.SaveTime)
+                Rooms[CurrentRoom].EndBurning(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (lifeTimer <= 0)
-            if(lifeTimer < -GameManager.Instance.OverflowLimit) State = HouseState.Overflowed; 
-            else State = HouseState.Saved;
-        Debug.Log(((int)State).ToString());
-        Sponge.TargetHouse = null;
+        if (CurrentRoom >= 0)
+        {
+            if (waterTimer <= 0)
+                if (isOverflowedRange()) State = HouseState.Overflowing;
+                else State = HouseState.Saved;
+            Sponge.TargetHouse = null;
+        }
     }
 }

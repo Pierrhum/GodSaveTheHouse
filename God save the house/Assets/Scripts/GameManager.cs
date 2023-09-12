@@ -5,12 +5,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Sponge")] 
-    public float WaterCapacity = 6f;
-    public float WaterRefill = 3.6f;
+    public float WaterCapacity = 3f;
+    public float WaterRefill = 1f;
     
     [Header("Houses")] 
-    public float BurningTime = 18f;
-    public float OverflowLimit = 1f;
+    public float BurningTime = 3f;
+    public float OverflowTime = 6f;
+    public float OverflowLimit = 2f;
+    public float SaveTime = 2f;
     public List<GameObject> FireParticles;
     public GameObject SmokeParticle;
     public GameObject ExplosionParticle;
