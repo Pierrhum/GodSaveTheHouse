@@ -578,12 +578,12 @@ PrefabInstance:
     - target: {fileID: 2815682649986914988, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.14
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 2815682649986914988, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.61
+      value: 1.82
       objectReference: {fileID: 0}
     - target: {fileID: 2815682649986914988, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
         type: 3}
@@ -628,32 +628,7 @@ PrefabInstance:
     - target: {fileID: 2815682649986914989, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
         type: 3}
       propertyPath: m_Name
-      value: Explosion_Sphere_SG
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815682650333921063, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key0.b
-      value: 0.44313726
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815682650333921063, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key0.g
-      value: 0.37254903
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815682650333921063, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key0.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815682650333921063, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.b
-      value: 0.44313726
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815682650333921063, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.g
-      value: 0.37254903
+      value: VFX_Explosion_Sphere_SG
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a, type: 3}
