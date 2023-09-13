@@ -19,6 +19,7 @@ public class Sponge : MonoBehaviour
     [Header("Debug")]
     public float WaterCapacity;
 
+    private EventInstance SpongeRefill;
     private EventInstance SpongeRaining;
     private Coroutine ConsumeCoroutine;
     private Coroutine RefillCoroutine;
@@ -75,11 +76,15 @@ public class Sponge : MonoBehaviour
 
         if (isRefilling)
         {
+            SpongeRefill = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.SpongeRefill);
             if(WaterCapacity < GameManager.Instance.WaterCapacity)
                 RefillCoroutine = StartCoroutine(RefillWater());
         }
         else
+        {
             StopCoroutine(RefillCoroutine);
+            AudioManager.Instance.StopEvent(SpongeRefill);
+        }
     }
 
     private void SetSprite(int SpriteID)
@@ -116,9 +121,11 @@ public class Sponge : MonoBehaviour
         {
             WaterCapacity += Time.deltaTime;
             float Lerp = GetLerpWaterCapacity();
+            
             if (Lerp > .6f) SetSprite(0);
             else if (Lerp > .3f) SetSprite(1);
             else SetSprite(2);
+            
             yield return new WaitForSeconds(Time.deltaTime);
         }
         AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongeFull);
