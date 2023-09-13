@@ -19,21 +19,18 @@ public class Sponge : MonoBehaviour
     [Header("Debug")]
     public float WaterCapacity;
 
+    public static bool isRaining = false;
     private EventInstance SpongeRefill;
     private EventInstance SpongeRaining;
+    private EventInstance RainOnSmth;
     private Coroutine ConsumeCoroutine;
     private Coroutine RefillCoroutine;
-    private bool isRaining = false;
     private bool isRefilling = false;
     private int CurrentSprite = 0;
 
     public float GetLerpWaterCapacity()
     {
         return WaterCapacity / GameManager.Instance.WaterCapacity;
-    }
-    private void Awake()
-    {
-        RainCollider.enabled = false;
     }
 
     private void Start()
@@ -47,14 +44,17 @@ public class Sponge : MonoBehaviour
     }
     public void SetRain(bool Activate)
     {
-        isRaining = Activate;
-        RainCollider.enabled = isRaining && WaterCapacity > 0;
+        isRaining = Activate && WaterCapacity > 0;
         
         if (isRaining)
         {
             if (WaterCapacity > 0)
             {
                 SpongeRaining = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.SpongeRaining);
+                if(TargetHouse.State == HouseState.Burning)
+                    RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnFire);
+                else if(TargetHouse.State == HouseState.Overflowing)
+                    RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnWater);
                 RainVFX.Play();
                 ConsumeCoroutine = StartCoroutine(ConsumeWater());
             } else 
@@ -63,6 +63,7 @@ public class Sponge : MonoBehaviour
         else
         {
             AudioManager.Instance.StopEvent(SpongeRaining);
+            AudioManager.Instance.StopEvent(RainOnSmth);
             RainVFX.Stop();
             StopCoroutine(ConsumeCoroutine);
             if (TargetHouse && TargetHouse.isSavedRange())

@@ -35,6 +35,91 @@ MonoBehaviour:
       Data3: -445589075
       Data4: 251371190
     Path: event:/WIP/Gorik/ExplosionBeforeFire
+  FireLevel:
+  - Guid:
+      Data1: -1470482333
+      Data2: 1079537542
+      Data3: -1322965583
+      Data4: -1506092569
+    Path: event:/WIP/Quentin/HouseFireLevelL
+  - Guid:
+      Data1: -1535603503
+      Data2: 1115960170
+      Data3: 719432576
+      Data4: 344309820
+    Path: event:/WIP/Quentin/HouseFireLevelC
+  - Guid:
+      Data1: -1523626866
+      Data2: 1308710174
+      Data3: -1318601575
+      Data4: 711936213
+    Path: event:/WIP/Quentin/HouseFireLevelR
+  HouseBurning:
+  - Guid:
+      Data1: -1717454860
+      Data2: 1327484260
+      Data3: -27674462
+      Data4: 1768216080
+    Path: event:/WIP/Gorik/HouseL/House_Burning_L
+  - Guid:
+      Data1: 1669073898
+      Data2: 1311700089
+      Data3: -2132713578
+      Data4: 1266789505
+    Path: event:/WIP/Gorik/HouseC/House_Burning_C
+  - Guid:
+      Data1: 418308997
+      Data2: 1114416213
+      Data3: -1842795096
+      Data4: 1257932271
+    Path: event:/WIP/Gorik/HouseR/House_Burning_R
+  HouseSelected:
+  - Guid:
+      Data1: -1411566387
+      Data2: 1321420401
+      Data3: 289565858
+      Data4: -1200780243
+    Path: event:/WIP/Gorik/HouseL/House_Selected_L
+  - Guid:
+      Data1: 1750159246
+      Data2: 1269659621
+      Data3: -470335310
+      Data4: -2138652800
+    Path: event:/WIP/Gorik/HouseC/House_Selected_C
+  - Guid:
+      Data1: -783351339
+      Data2: 1285006780
+      Data3: -827734383
+      Data4: 1375466883
+    Path: event:/WIP/Gorik/HouseR/House_Selected_R
+  HouseBurnt:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  HouseSafe:
+    Guid:
+      Data1: -70125419
+      Data2: 1165283256
+      Data3: -1006898043
+      Data4: -1554732576
+    Path: event:/WIP/Quentin/HouseSafe
+  RainOnFire:
+    Guid:
+      Data1: -294082580
+      Data2: 1292770723
+      Data3: -1891036490
+      Data4: -289279467
+    Path: event:/WIP/Gorik/RainOnFire
+  RainOnWater:
+    Guid:
+      Data1: 988375670
+      Data2: 1211676347
+      Data3: -974448471
+      Data4: -1199301340
+    Path: event:/WIP/Gorik/RainOnWater
   SpongePressed:
     Guid:
       Data1: -1405115951
