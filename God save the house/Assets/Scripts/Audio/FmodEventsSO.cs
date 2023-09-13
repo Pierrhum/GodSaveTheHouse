@@ -14,10 +14,13 @@ public class FmodEventsSO : ScriptableObject
 
     [Header("Gameplay")]
     public EventReference Explosion;
-    public EventReference HouseDrowned;
+    public List<EventReference> FireLevel;
     public List<EventReference> HouseBurning;
     public List<EventReference> HouseSelected;
     public EventReference HouseBurnt;
+    public EventReference HouseSafe;
+    public EventReference RainOnFire;
+    public EventReference RainOnWater;
 
     [Header("Sponge")]
     public EventReference SpongePressed;

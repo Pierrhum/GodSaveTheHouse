@@ -13,6 +13,8 @@ public class Room : MonoBehaviour
     private ParticleSystem Smoke;
     private GameObject Fire;
 
+    private bool doOnceHouseSafe = true;
+
     private void Start()
     {
         GameObject Fire_go = Instantiate(GameManager.Instance.GetRandomFire(), FireSpawnPoint);
@@ -30,6 +32,11 @@ public class Room : MonoBehaviour
         Smoke.Stop();
         if(!Saved)
             BurnSprite.SetActive(true);
+        else if (doOnceHouseSafe)
+        {
+            doOnceHouseSafe = false;
+            AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.HouseSafe);
+        }
     }
 
     public void StartBurning()
