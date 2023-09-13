@@ -11,6 +11,11 @@ public class Sponge : MonoBehaviour
     public SpriteRenderer CloudSprite;
     public Collider RainCollider;
     public ParticleSystem RainVFX;
+
+    [Header("Parameters")] 
+    public List<Sprite> Sprites;
+    
+    [Header("Debug")]
     public float WaterCapacity;
 
     
@@ -18,7 +23,12 @@ public class Sponge : MonoBehaviour
     private Coroutine RefillCoroutine;
     private bool isRaining = false;
     private bool isRefilling = false;
+    private int CurrentSprite = 0;
 
+    public float GetLerpWaterCapacity()
+    {
+        return WaterCapacity / GameManager.Instance.WaterCapacity;
+    }
     private void Awake()
     {
         RainCollider.enabled = false;
@@ -68,11 +78,24 @@ public class Sponge : MonoBehaviour
             StopCoroutine(RefillCoroutine);
     }
 
+    private void SetSprite(int SpriteID)
+    {
+        if (SpriteID != CurrentSprite)
+        {
+            CurrentSprite = SpriteID;
+            CloudSprite.sprite = Sprites[CurrentSprite];
+        }
+    }
+
     private IEnumerator ConsumeWater()
     {
         while (WaterCapacity > 0)
         {
             WaterCapacity -= Time.deltaTime;
+            float Lerp = GetLerpWaterCapacity();
+            if (Lerp > .6f) SetSprite(0);
+            else if (Lerp > .3f) SetSprite(1);
+            else SetSprite(2);
             yield return new WaitForSeconds(Time.deltaTime);
         }
         SetRain(false);
@@ -83,6 +106,10 @@ public class Sponge : MonoBehaviour
         while (WaterCapacity < GameManager.Instance.WaterCapacity)
         {
             WaterCapacity += Time.deltaTime;
+            float Lerp = GetLerpWaterCapacity();
+            if (Lerp > .6f) SetSprite(0);
+            else if (Lerp > .3f) SetSprite(1);
+            else SetSprite(2);
             yield return new WaitForSeconds(Time.deltaTime);
         }
         SetRefill(false);

@@ -350,6 +350,7 @@ MonoBehaviour:
   CloudSprite: {fileID: 1804674221}
   RainCollider: {fileID: 758809749}
   RainVFX: {fileID: 2107345709}
+  Sprites: []
   WaterCapacity: 0
 --- !u!4 &79547371
 Transform:
@@ -1085,13 +1086,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rooms:
-  - {fileID: 856592657}
-  - {fileID: 1161371083}
-  - {fileID: 557066144}
   - {fileID: 1123209839}
+  - {fileID: 856592657}
   - {fileID: 168789445}
+  - {fileID: 1161371083}
   - {fileID: 59386072}
+  - {fileID: 557066144}
   - {fileID: 670258010}
+  burnTimer: 0
+  waterTimer: 0
 --- !u!65 &626635144
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1129,7 +1132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634284816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2034,10 +2037,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2d2413ea012e848a8f5c29503ef7c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaterCapacity: 6
-  WaterRefill: 3.6
-  BurningTime: 5
-  OverflowLimit: 3
+  WaterCapacity: 3
+  WaterRefill: 1
+  BurningTime: 1
+  OverflowTime: 5
+  OverflowLimit: 2
+  SaveTime: 1
   FireParticles:
   - {fileID: 5453813337987338184, guid: 612b84f7f84ed744f978caf8d9e097bc, type: 3}
   - {fileID: 5848653689334807848, guid: d4fc213bf2e7ef841bd8ec45b30fd8c3, type: 3}
