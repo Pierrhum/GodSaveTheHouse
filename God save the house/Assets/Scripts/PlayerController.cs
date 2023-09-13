@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,8 +30,10 @@ public class PlayerController : MonoBehaviour
     
     public void RefillWater(InputAction.CallbackContext context)
     {
-        if(context.canceled || context.started)
+        if (context.canceled || context.started)
+        {
             sponge.SetRefill(context.started);
+        }
     }
 
     private void Update()

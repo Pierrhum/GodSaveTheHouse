@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public enum HouseState { Normal, Burning, Overflowing, Saved, Burnt, Drown }
@@ -16,6 +18,7 @@ public class House : MonoBehaviour
     [System.NonSerialized] public HouseState State = HouseState.Normal;
     
     private int CurrentRoom = -1;
+    private EventInstance BurningSFX;
 
     private void Start()
     {
@@ -36,6 +39,7 @@ public class House : MonoBehaviour
     private IEnumerator BurnCoroutine(float startDelay)
     {
         yield return new WaitForSeconds(startDelay);
+        BurningSFX = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.HouseBurning[(int)Position]);
 
         // Burning
         while (State == HouseState.Normal)
@@ -47,6 +51,7 @@ public class House : MonoBehaviour
             else
             {
                 burnTimer += Time.deltaTime;
+                BurningSFX.setParameterByName("FireIntensity", 3 * burnTimer / (GameManager.Instance.BurningTime * 7));
                 if (burnTimer >= (CurrentRoom+1) * GameManager.Instance.BurningTime)
                 {
                     // First room
@@ -59,7 +64,7 @@ public class House : MonoBehaviour
                 yield return new WaitForSeconds(Time.deltaTime);
             }
         }
-
+        AudioManager.Instance.StopEvent(BurningSFX);
         if (State == HouseState.Overflowing) StartCoroutine(OverflowCoroutine());
         if (State == HouseState.Saved) Debug.Log(("Saved"));
     }

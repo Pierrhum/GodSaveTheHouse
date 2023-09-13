@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -13,6 +14,10 @@ public class FmodEventsSO : ScriptableObject
 
     [Header("Gameplay")]
     public EventReference Explosion;
+    public EventReference HouseDrowned;
+    public List<EventReference> HouseBurning;
+    public List<EventReference> HouseSelected;
+    public EventReference HouseBurnt;
 
     [Header("Sponge")]
     public EventReference SpongePressed;
