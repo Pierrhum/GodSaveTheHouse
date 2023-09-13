@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{e2408f0c-cccf-46e2-95e2-8af1dce5f566}">
+		<property name="name">
+			<value>FireLevel</value>
+		</property>
+		<relationship name="folder">
+			<destination>{56cc55d0-7774-4ceb-a854-1f3709fa9e73}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{a532e07b-f47b-4140-aea2-5056af9b2299}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{a532e07b-f47b-4140-aea2-5056af9b2299}">
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
