@@ -423,6 +423,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Fire1
       objectReference: {fileID: 0}
+    - target: {fileID: 5453813337987338184, guid: 612b84f7f84ed744f978caf8d9e097bc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 612b84f7f84ed744f978caf8d9e097bc, type: 3}
 --- !u!1001 &996114168
@@ -436,6 +441,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VFX_Fire3
+      objectReference: {fileID: 0}
+    - target: {fileID: 833729229573884911, guid: ad89f9df20a7538489555596e4dc87b7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6746307157517313248, guid: ad89f9df20a7538489555596e4dc87b7,
         type: 3}
@@ -506,6 +516,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Fire2
       objectReference: {fileID: 0}
+    - target: {fileID: 5848653689334807848, guid: d4fc213bf2e7ef841bd8ec45b30fd8c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250739881681003868, guid: d4fc213bf2e7ef841bd8ec45b30fd8c3,
         type: 3}
       propertyPath: m_RootOrder
@@ -570,6 +585,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 69597901260479419, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2815682649986914988, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
         type: 3}
       propertyPath: m_RootOrder
@@ -629,6 +649,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VFX_Explosion_Sphere_SG
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829927920417891778, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.37254906
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829927920417891778, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.4827626
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829927920417891778, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ac1faa0bc7e6fb4ca0838af0c249c4a, type: 3}
