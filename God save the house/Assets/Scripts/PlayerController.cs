@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 inputMovement;
     private float lerp;
     private const float maxDistance = 85f;
-    private const float minDistance = 10f;
+    private const float minDistance = 15f;
     
 
     public void Move(InputAction.CallbackContext context)
@@ -25,13 +25,13 @@ public class PlayerController : MonoBehaviour
     }
     public void Move(float position)
     {
-        if (position < 10)
+        if (position < minDistance)
         {
-            position = 10;
+            position = minDistance;
         }
-        else if (position > 85)
+        else if (position > maxDistance)
         {
-            position = 85;
+            position = maxDistance;
         }
 
         float LerpValue = (position - minDistance) / (maxDistance - minDistance);
@@ -81,7 +81,10 @@ public class PlayerController : MonoBehaviour
     {
         //sponge.Move(inputMovement);
         if ((lerp >= 0 && inputMovement.x < 0) || (lerp < 1 && inputMovement.x > 0))
+        {
             lerp += inputMovement.x;
-        SetPlayerPosition(lerp);
+            SetPlayerPosition(lerp);
+        }
+
     }
 }
