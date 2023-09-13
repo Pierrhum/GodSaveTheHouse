@@ -5,7 +5,7 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
-public enum HouseState { Normal, Burning, Overflowing, Saved, Burnt, Drown }
+public enum HouseState { Burning, Overflowing, Saved, Burnt, Drown }
 public enum HousePosition { L, C, R }
 public class House : MonoBehaviour
 {
@@ -15,10 +15,11 @@ public class House : MonoBehaviour
     public float burnTimer = 0f;
     //[System.NonSerialized] 
     public float waterTimer = 0f;
-    [System.NonSerialized] public HouseState State = HouseState.Normal;
+    [System.NonSerialized] public HouseState State = HouseState.Burning;
     
     private int CurrentRoom = -1;
     private EventInstance BurningSFX;
+    private EventInstance FireLevelSFX;
 
     private void Start()
     {
@@ -40,9 +41,10 @@ public class House : MonoBehaviour
     {
         yield return new WaitForSeconds(startDelay);
         BurningSFX = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.HouseBurning[(int)Position]);
+        FireLevelSFX = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.FireLevel[(int)Position]);
 
         // Burning
-        while (State == HouseState.Normal)
+        while (State == HouseState.Burning)
         {
             // Starts overflow
             if (isOverflowedRange())
@@ -51,7 +53,8 @@ public class House : MonoBehaviour
             else
             {
                 burnTimer += Time.deltaTime;
-                BurningSFX.setParameterByName("FireIntensity", 3 * burnTimer / (GameManager.Instance.BurningTime * 7));
+                BurningSFX.setParameterByName("FireLevel", 2 * burnTimer / (GameManager.Instance.BurningTime * 7));
+                FireLevelSFX.setParameterByName("FireLevel", 2 * burnTimer / (GameManager.Instance.BurningTime * 7));
                 if (burnTimer >= (CurrentRoom+1) * GameManager.Instance.BurningTime)
                 {
                     // First room
@@ -65,6 +68,7 @@ public class House : MonoBehaviour
             }
         }
         AudioManager.Instance.StopEvent(BurningSFX);
+        AudioManager.Instance.StopEvent(FireLevelSFX);
         if (State == HouseState.Overflowing) StartCoroutine(OverflowCoroutine());
         if (State == HouseState.Saved) Debug.Log(("Saved"));
     }
@@ -84,11 +88,16 @@ public class House : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Sponge.TargetHouse = this;
+        AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.HouseSelected[(int)Position]);
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        if (CurrentRoom >= 0)
+        if (Sponge.isRaining && CurrentRoom >= 0)
         {
-            Sponge.TargetHouse = this;
             waterTimer += Time.deltaTime;
             if(waterTimer >= GameManager.Instance.SaveTime)
                 Rooms[CurrentRoom].EndBurning(true);
@@ -97,7 +106,7 @@ public class House : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (CurrentRoom >= 0)
+        if (Sponge.isRaining && CurrentRoom >= 0)
         {
             if (waterTimer <= 0)
                 if (isOverflowedRange()) State = HouseState.Overflowing;
