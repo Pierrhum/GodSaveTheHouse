@@ -8,26 +8,26 @@ public class ControllerValues
    /// <summary>
    /// Distance at which hand of user is
    /// </summary>
-   public static float HandPositionFromCaptor;
+   public float HandPositionFromCaptor;
    /// <summary>
    /// Pressure applied by user
    /// goes from -0. something (uninteresting) to +5. psi max can start count at 0.1
    /// </summary>
-   public static float PressureButtonValue;
+   public float PressureButtonValue;
    /// <summary>
    /// User is pressing pressure button
    /// </summary>
-   public static int PressureButtonIsPressed;
+   public bool PressureButtonIsPressed;
    /// <summary>
    /// Lake button is pressed
    /// </summary>
-   public static int LakeButtonIsPressed;
+   public bool LakeButtonIsPressed;
    public ControllerValues(string msg)
    {
       string[] message = msg.Split(";");
       HandPositionFromCaptor = float.Parse(message[0],CultureInfo.InvariantCulture.NumberFormat);
       PressureButtonValue = float.Parse(message[1],CultureInfo.InvariantCulture.NumberFormat);
-      PressureButtonIsPressed = int.Parse(message[2]);
-      LakeButtonIsPressed = int.Parse(message[3]);
+      PressureButtonIsPressed = int.Parse(message[2]) != 0;
+      LakeButtonIsPressed = int.Parse(message[3]) != 0;
    }
 }

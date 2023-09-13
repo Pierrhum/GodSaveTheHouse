@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 inputMovement;
     private float lerp;
+    private const float maxDistance = 85f;
+    private const float minDistance = 10f;
+    
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -20,7 +23,21 @@ public class PlayerController : MonoBehaviour
     {
         sponge.Move(GameManager.Instance.GetSpongePosition(LerpValue));
     }
-    
+    public void Move(float position)
+    {
+        if (position < 10)
+        {
+            position = 10;
+        }
+        else if (position > 85)
+        {
+            position = 85;
+        }
+
+        float LerpValue = (position - minDistance) / (maxDistance - minDistance);
+        Debug.Log(LerpValue);
+        SetPlayerPosition(LerpValue);
+    }
     public void Press(InputAction.CallbackContext context)
     {
         if (context.canceled)
@@ -34,6 +51,21 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    public void Press(bool press)
+    {
+        if (press)
+        {
+            sponge.SetRain(true);
+            AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongePressed);
+            
+        }
+        else
+        {
+            sponge.SetRain(false);
+        }
+    }
+
+    
     public void RefillWater(InputAction.CallbackContext context)
     {
         if (context.canceled || context.started)
@@ -41,7 +73,10 @@ public class PlayerController : MonoBehaviour
             sponge.SetRefill(context.started);
         }
     }
-
+    public void RefillWater(bool refilling)
+    {
+        sponge.SetRefill(refilling);
+    }
     private void Update()
     {
         //sponge.Move(inputMovement);

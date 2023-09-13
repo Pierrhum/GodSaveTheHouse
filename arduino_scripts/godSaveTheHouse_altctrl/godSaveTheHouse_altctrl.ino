@@ -50,7 +50,7 @@ CapacitiveSensor cs_4_2 = CapacitiveSensor(4,2); // 10 megohm resistor between p
 void setup() {
   // put your setup code here, to run once:
   cs_4_2.set_CS_AutocaL_Millis(0xFFFFFFFF); // turn off autocalibrate on channel 1 - just as an example 
-  cs_4_2.set_CS_Timeout_Millis(100);
+  cs_4_2.set_CS_Timeout_Millis(1000);
   Serial.begin(9600);
   pinMode(TRIGGER_PIN,OUTPUT);
   pinMode(ECHO_PIN, INPUT);
@@ -75,7 +75,7 @@ void loop() {
 // arbitrary delay to limit data to serial port 
   distanceSensorTest();
   testPressureBtn();
-  testLakeButton();
+  //testLakeButton();
   sendMsg();
   //delay(100);
 }
@@ -163,7 +163,7 @@ void sendMsg(){
     int lakeBtnPress = lakeBtnIsDown?1:0;
     String msg = (String)distance +";"+ (String)pressureBtnValue+";"+ (String)pressureBtnPress +";" +(String)lakeBtnPress + ";";
     Serial.println(msg);
-     //Serial.println(val);
+    //Serial.println(val);
     last_time_msg_sent = current_time;
  }
  

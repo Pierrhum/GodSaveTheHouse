@@ -46,11 +46,13 @@ public class Sponge : MonoBehaviour
     {
         transform.position = new Vector2(PosX, transform.position.y);
     }
-    public void SetRain(bool Activate)
+    public void SetRain(bool activate)
     {
-        isRaining = Activate && WaterCapacity > 0;
+       
         
-        if (isRaining)
+        RainCollider.enabled = activate && WaterCapacity > 0;
+        
+        if (activate && !isRaining)
         {
             if (WaterCapacity > 0)
             {
@@ -64,7 +66,7 @@ public class Sponge : MonoBehaviour
             } else 
                 AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongeEmpty);
         }
-        else
+        else if (!activate && isRaining)
         {
             AudioManager.Instance.StopEvent(SpongeRaining);
             AudioManager.Instance.StopEvent(RainOnSmth);
@@ -73,23 +75,24 @@ public class Sponge : MonoBehaviour
             if (TargetHouse && TargetHouse.isSavedRange())
                 TargetHouse.State = HouseState.Saved;
         }
+        isRaining = activate && WaterCapacity > 0;    
     }
 
-    public void SetRefill(bool Activate)
+    public void SetRefill(bool activate)
     {
-        isRefilling = Activate;
-
-        if (isRefilling)
+        
+        if (activate && !isRefilling)
         {
             SpongeRefill = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.SpongeRefill);
-            if(WaterCapacity < GameManager.Instance.WaterCapacity)
-                RefillCoroutine = StartCoroutine(RefillWater());
+                if(WaterCapacity < GameManager.Instance.WaterCapacity)
+                    RefillCoroutine = StartCoroutine(RefillWater());
         }
-        else
+        else if(!activate && isRefilling)
         {
             StopCoroutine(RefillCoroutine);
             AudioManager.Instance.StopEvent(SpongeRefill);
         }
+        isRefilling = activate;
     }
 
     private void SetSprite(int SpriteID)
