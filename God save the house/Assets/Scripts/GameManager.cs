@@ -6,11 +6,15 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI")] 
+    public GameCanvas UI;
+    
     [Header("Sponge")] 
     public float WaterCapacity = 3f;
     public float WaterRefill = 1f;
 
     [Header("Houses")] 
+    [SerializeField] private int MinHouseToSave = 1;
     [SerializeField] private House LeftHouse;
     [SerializeField] private House RightHouse;
     public float BurningTime = 3f;
@@ -25,7 +29,11 @@ public class GameManager : MonoBehaviour
     public float PlayerSpeed = 1f;
     
     [System.NonSerialized] public Sponge Sponge;
+    [System.NonSerialized] public int HousesTotal = 0;
+    private int HousesDead = 0;
+    private int HousesSaved = 0;
     private float HousesDistance;
+    
     // Singleton
     private static GameManager _instance;
     public static GameManager Instance
@@ -57,5 +65,28 @@ public class GameManager : MonoBehaviour
     public float GetSpongePosition(float LerpValue)
     {
         return LeftHouse.transform.position.x + LerpValue * HousesDistance;
+    }
+
+    public void HouseEnd(bool Saved)
+    {
+        if (!Saved) HousesDead++;
+        else HousesSaved++;
+
+        if (HousesDead + HousesSaved == HousesTotal)
+        {
+            if(HousesSaved >= MinHouseToSave)  Victory();
+            else GameOver();
+        }
+
+    }
+
+    private void GameOver()
+    {
+        UI.GameOverScreen();
+    }
+
+    private void Victory()
+    {
+        UI.VictoryScreen();
     }
 }
