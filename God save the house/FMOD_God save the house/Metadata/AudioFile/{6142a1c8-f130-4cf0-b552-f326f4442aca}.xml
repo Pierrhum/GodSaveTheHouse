@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6142a1c8-f130-4cf0-b552-f326f4442aca}">
+		<property name="assetPath">
+			<value>House_Fire_Level_R_03.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>2.0184791666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26ea96ea-23fc-4846-beae-d60e40b64fdd}</destination>
+		</relationship>
+	</object>
+</objects>
