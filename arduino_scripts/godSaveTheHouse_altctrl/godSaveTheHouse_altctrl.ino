@@ -30,8 +30,6 @@ unsigned long duration_micro_for_next_state = 0;
 unsigned long time_micro_since_previous_state = 0;
 
 float pressureBtnValue = 0;
-int pressureBtnPrevValue = 0;
-bool pressureBtnPressed = false;
 bool pressureBtnIsDown = false;
 
 bool lakeBtnIsDown = false;
@@ -56,18 +54,16 @@ void setup() {
   Serial.begin(9600);
   pinMode(TRIGGER_PIN,OUTPUT);
   pinMode(ECHO_PIN, INPUT);
-  pinMode(LED_BUILTIN, OUTPUT);
+  /*pinMode(LED_BUILTIN, OUTPUT);
   pinMode(LED_1_PIN, OUTPUT);
-
   pinMode(LED_2_PIN, OUTPUT);
-
-  pinMode(LED_3_PIN, OUTPUT);
+  pinMode(LED_3_PIN, OUTPUT);*/
 
    //Init btn
- 	pinMode(BUTTON_PIN, INPUT_PULLUP);
+ //	pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(PRESSURE_PIN, INPUT_PULLUP);
-  pressureBtnPrevValue = analogRead(BUTTON_PIN);
-  pressureBtnValue = analogRead(BUTTON_PIN);
+  //pressureBtnPrevValue = analogRead(BUTTON_PIN);
+  //pressureBtnValue = analogRead(BUTTON_PIN);
 
 
 }
@@ -81,7 +77,7 @@ void loop() {
   testPressureBtn();
   testLakeButton();
   sendMsg();
-  delay(100);
+  //delay(100);
 }
  long val =0;
 void testLakeButton(){
@@ -116,7 +112,7 @@ void distanceSensorTest(){
     duration=pulseIn(ECHO_PIN, HIGH);
     distance=(duration*0.034)/2;
   
-    if(distance > 15 and distance < 25){
+   /* if(distance > 15 and distance < 25){
       triggerLed(LED_1_PIN);
     }
     if(distance > 40 and distance < 50){
@@ -125,7 +121,7 @@ void distanceSensorTest(){
     if(distance > 65 and distance < 75){
       triggerLed(LED_3_PIN);
     }
-    turnOffLed();
+    turnOffLed();*/
     current_sensor_state = STOP_RECEIVE;
     time_since_previous_state = current_time;
     duration_for_next_state = 100;
@@ -149,25 +145,6 @@ bool isDelayMicroTimePassed(){
   return ((time_micro_since_previous_state + duration_micro_for_next_state)<current_time_micros);
 }
 
-void  triggerLed(int pin){
-  if (pin == 0){
-    pin = LED_BUILTIN;
-  }
-
-  if(last_time_buzzed + tone_duration < current_time){
-    digitalWrite(last_pin_used, LOW);
-    digitalWrite(pin, HIGH);
-    last_pin_used = pin;
-    last_time_buzzed = current_time;
-  }
-}
-
-void turnOffLed(){
-  if(last_time_buzzed + tone_duration < current_time){
-    digitalWrite(last_pin_used, LOW);
-  }
-
-}
 
 
 void testPressureBtn() {
