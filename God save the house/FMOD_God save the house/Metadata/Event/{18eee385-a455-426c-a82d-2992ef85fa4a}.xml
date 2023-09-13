@@ -103,6 +103,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{5cab9e62-5ab4-44fe-adbb-0bfccdcdca98}" />
 	<object class="SingleSound" id="{ef662e0a-76d3-4155-a4e5-0f58b81b0377}">
+		<property name="looping">
+			<value>true</value>
+		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{b759e1bc-d647-4029-8536-266df598b517}</destination>
 		</relationship>
@@ -116,6 +119,9 @@
 		</property>
 		<property name="length">
 			<value>1.9253694581280787</value>
+		</property>
+		<property name="looping">
+			<value>true</value>
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{a1e80bdb-391d-4721-9028-ede1011354ee}</destination>
@@ -133,6 +139,9 @@
 		</property>
 		<property name="length">
 			<value>1.1499999999999999</value>
+		</property>
+		<property name="looping">
+			<value>true</value>
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{eab58b36-4e93-460e-8074-95622225170b}</destination>
