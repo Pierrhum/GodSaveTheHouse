@@ -7,8 +7,11 @@
 #define LED_2_PIN 9
 #define LED_3_PIN 8
 #define BUTTON_PIN A0
+#define PRESSURE_PIN A1
 
-
+const int pressureZero = 102.4; //analog reading of pressure transducer at 0psi
+const int pressureMax = 921.6; //analog reading of pressure transducer at 30psi
+const int pressuretransducermaxPSI = 30; //psi value of transducer being used
 
 float distance;
 float duration;
@@ -26,7 +29,7 @@ unsigned long current_time_micros;
 unsigned long duration_micro_for_next_state = 0;
 unsigned long time_micro_since_previous_state = 0;
 
-int pressureBtnValue = 0;
+float pressureBtnValue = 0;
 int pressureBtnPrevValue = 0;
 bool pressureBtnPressed = false;
 bool pressureBtnIsDown = false;
@@ -48,7 +51,7 @@ CapacitiveSensor cs_4_2 = CapacitiveSensor(4,2); // 10 megohm resistor between p
 
 void setup() {
   // put your setup code here, to run once:
-  //cs_4_2.set_CS_AutocaL_Millis(0xFFFFFFFF); // turn off autocalibrate on channel 1 - just as an example 
+  cs_4_2.set_CS_AutocaL_Millis(0xFFFFFFFF); // turn off autocalibrate on channel 1 - just as an example 
   cs_4_2.set_CS_Timeout_Millis(100);
   Serial.begin(9600);
   pinMode(TRIGGER_PIN,OUTPUT);
@@ -62,6 +65,7 @@ void setup() {
 
    //Init btn
  	pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(PRESSURE_PIN, INPUT_PULLUP);
   pressureBtnPrevValue = analogRead(BUTTON_PIN);
   pressureBtnValue = analogRead(BUTTON_PIN);
 
@@ -74,13 +78,14 @@ void loop() {
 
 // arbitrary delay to limit data to serial port 
   distanceSensorTest();
-  testPushBtn();
+  testPressureBtn();
   testLakeButton();
   sendMsg();
+  delay(100);
 }
  long val =0;
 void testLakeButton(){
-  val= cs_4_2.capacitiveSensorRaw(20);
+  val= cs_4_2.capacitiveSensorRaw(30);
   
   lakeBtnIsDown = val != -2;
 }
@@ -165,20 +170,14 @@ void turnOffLed(){
 }
 
 
-void testPushBtn() {
+void testPressureBtn() {
   // Read pushbutton
-  pressureBtnValue = analogRead(BUTTON_PIN);
-  pressureBtnPressed= false;
-  if (pressureBtnValue < 200 && !pressureBtnIsDown){
-    pressureBtnPressed= true;
+  pressureBtnValue = analogRead(PRESSURE_PIN);
+  pressureBtnValue = ((pressureBtnValue-pressureZero)*pressuretransducermaxPSI)/(pressureMax-pressureZero); //conversion equation to convert analog reading to psi
+  pressureBtnIsDown= false;
+  if(pressureBtnValue > 0.1){
     pressureBtnIsDown = true;
-    //triggerLed(LED_BUILTIN);
   }
-  else if(pressureBtnValue > 500)
-  {
-    pressureBtnIsDown = false;
-  }
- 
 }
 
 void sendMsg(){
@@ -187,6 +186,7 @@ void sendMsg(){
     int lakeBtnPress = lakeBtnIsDown?1:0;
     String msg = (String)distance +";"+ (String)pressureBtnValue+";"+ (String)pressureBtnPress +";" +(String)lakeBtnPress + ";";
     Serial.println(msg);
+     //Serial.println(val);
     last_time_msg_sent = current_time;
  }
  

@@ -11,7 +11,7 @@ public class ControllerValues
    public static float HandPositionFromCaptor;
    /// <summary>
    /// Pressure applied by user
-   /// Currently, the higher this number is, the lower the pressure
+   /// goes from -0. something (uninteresting) to +5. psi max can start count at 0.1
    /// </summary>
    public static float PressureButtonValue;
    /// <summary>
