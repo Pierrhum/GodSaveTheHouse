@@ -12,10 +12,13 @@ public class FmodEventsSO : ScriptableObject
     public FmodEventRefAndInstance test2;
 
     [Header("Gameplay")]
-    public EventReference test3;
+    public EventReference Explosion;
 
     [Header("Player")]
-    public EventReference test4;
+    public EventReference SpongePressed;
+    public EventReference SpongeEmpty;
+    public EventReference SpongeRefill;
+    public EventReference SpongeFull;
 }
 
 [System.Serializable]

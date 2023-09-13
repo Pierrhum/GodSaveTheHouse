@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 
 public class Room : MonoBehaviour
 {
     public GameObject BurnSprite;
     public Transform FireSpawnPoint;
-    
+
+    [System.NonSerialized] public string Position;
     private ParticleSystem Smoke;
     private GameObject Fire;
 
@@ -35,5 +37,7 @@ public class Room : MonoBehaviour
         Instantiate(GameManager.Instance.ExplosionParticle, FireSpawnPoint);
         Fire.SetActive(true);
         Smoke.Play();
+        EventInstance sfx = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.Explosion);
+        sfx.setParameterByNameWithLabel("HousePosition", Position);
     }
 }

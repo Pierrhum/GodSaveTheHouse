@@ -9,9 +9,6 @@ public class PlayerController : MonoBehaviour
 {
     public Sponge sponge;
 
-    [Header("SFX")] 
-    public StudioEventEmitter SpongePressed;
-    
     private Vector2 inputMovement;
 
     public void Move(InputAction.CallbackContext context)
@@ -28,7 +25,7 @@ public class PlayerController : MonoBehaviour
         else if (context.started)
         {
             sponge.SetRain(true);
-            SpongePressed.Play();
+            AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongePressed);
         }
     }
     

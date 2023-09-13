@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum HouseState { Normal, Burning, Overflowing, Saved, Burnt, Drown }
+public enum HousePosition { L, C, R }
 public class House : MonoBehaviour
 {
+    public HousePosition Position;
     public List<Room> Rooms;
     //[System.NonSerialized] 
     public float burnTimer = 0f;
@@ -17,6 +19,7 @@ public class House : MonoBehaviour
 
     private void Start()
     {
+        Rooms.ForEach(R => R.Position = Position == HousePosition.L ? "L" : Position == HousePosition.R ? "R" : "C");
         StartCoroutine(BurnCoroutine(2));
     }
 

@@ -54,7 +54,8 @@ public class Sponge : MonoBehaviour
             {
                 RainVFX.Play();
                 ConsumeCoroutine = StartCoroutine(ConsumeWater());
-            }
+            } else 
+                AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongeEmpty);
         }
         else
         {
@@ -98,6 +99,7 @@ public class Sponge : MonoBehaviour
             else SetSprite(2);
             yield return new WaitForSeconds(Time.deltaTime);
         }
+        AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongeEmpty);
         SetRain(false);
     }
     
@@ -112,6 +114,7 @@ public class Sponge : MonoBehaviour
             else SetSprite(2);
             yield return new WaitForSeconds(Time.deltaTime);
         }
+        AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongeFull);
         SetRefill(false);
     }
 }

@@ -30,13 +30,14 @@ public class AudioManager : Singleton<AudioManager>
         Debug.Log("[Audio] " + $"Playing one shot event {eventReference}.");
     }
 
-    public void PlayEvent(EventReference eventReference)
+    public EventInstance PlayEvent(EventReference eventReference)
     {
         EventInstance eventInstance;
         eventInstance = RuntimeManager.CreateInstance(eventReference);
         eventInstance.start();
         eventInstance.release();
         Debug.Log("[Audio] " + $"Playing event {GetEventPath(eventInstance)}.");
+        return eventInstance;
     }
 
     public void PlayEvent(EventInstance eventInstance)
