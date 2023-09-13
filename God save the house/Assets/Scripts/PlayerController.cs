@@ -9,10 +9,16 @@ public class PlayerController : MonoBehaviour
     public Sponge sponge;
 
     private Vector2 inputMovement;
+    private float lerp;
 
     public void Move(InputAction.CallbackContext context)
     {
         inputMovement = context.ReadValue<Vector2>() * GameManager.Instance.PlayerSpeed * 0.01f;
+    }
+
+    public void SetPlayerPosition(float LerpValue)
+    {
+        sponge.Move(GameManager.Instance.GetSpongePosition(LerpValue));
     }
     
     public void Press(InputAction.CallbackContext context)
@@ -38,6 +44,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        sponge.Move(inputMovement);
+        //sponge.Move(inputMovement);
+        if ((lerp >= 0 && inputMovement.x < 0) || (lerp < 1 && inputMovement.x > 0))
+            lerp += inputMovement.x;
+        SetPlayerPosition(lerp);
     }
 }

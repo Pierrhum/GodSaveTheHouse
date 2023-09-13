@@ -42,6 +42,10 @@ public class Sponge : MonoBehaviour
     {
         transform.position += DeltaPos;
     }
+    public void Move(float PosX)
+    {
+        transform.position = new Vector2(PosX, transform.position.y);
+    }
     public void SetRain(bool Activate)
     {
         isRaining = Activate && WaterCapacity > 0;
