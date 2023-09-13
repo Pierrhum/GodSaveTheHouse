@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ public class Sponge : MonoBehaviour
     [Header("Debug")]
     public float WaterCapacity;
 
-    
+    private EventInstance SpongeRaining;
     private Coroutine ConsumeCoroutine;
     private Coroutine RefillCoroutine;
     private bool isRaining = false;
@@ -52,6 +53,7 @@ public class Sponge : MonoBehaviour
         {
             if (WaterCapacity > 0)
             {
+                SpongeRaining = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.SpongeRaining);
                 RainVFX.Play();
                 ConsumeCoroutine = StartCoroutine(ConsumeWater());
             } else 
@@ -59,6 +61,7 @@ public class Sponge : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.StopEvent(SpongeRaining);
             RainVFX.Stop();
             StopCoroutine(ConsumeCoroutine);
             if (TargetHouse && TargetHouse.isSavedRange())
@@ -94,9 +97,13 @@ public class Sponge : MonoBehaviour
         {
             WaterCapacity -= Time.deltaTime;
             float Lerp = GetLerpWaterCapacity();
+            
             if (Lerp > .6f) SetSprite(0);
             else if (Lerp > .3f) SetSprite(1);
             else SetSprite(2);
+            AudioManager.Instance.SetGlobalParameter("RainIntensity", (1 - Lerp));
+            AudioManager.Instance.SetGlobalParameter("CloudPosition", .5f);
+            
             yield return new WaitForSeconds(Time.deltaTime);
         }
         AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongeEmpty);

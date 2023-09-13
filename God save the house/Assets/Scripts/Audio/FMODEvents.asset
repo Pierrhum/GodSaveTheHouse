@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96abc6ae016bc9d40b22bce03948c474, type: 3}
   m_Name: FMODEvents
   m_EditorClassIdentifier: 
-  fightMusic:
+  test1:
     reference:
       Guid:
         Data1: 0
@@ -20,7 +20,7 @@ MonoBehaviour:
         Data3: 0
         Data4: 0
       Path: 
-  caveAmbiance:
+  test2:
     reference:
       Guid:
         Data1: 0
@@ -28,121 +28,45 @@ MonoBehaviour:
         Data3: 0
         Data4: 0
       Path: 
-  gameOver:
+  Explosion:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  win:
+      Data1: -1931680625
+      Data2: 1177672314
+      Data3: -445589075
+      Data4: 251371190
+    Path: event:/WIP/Gorik/ExplosionBeforeFire
+  SpongePressed:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  positiveFeedback:
+      Data1: -1405115951
+      Data2: 1250010471
+      Data3: -745876836
+      Data4: -1515949819
+    Path: event:/WIP/Quentin/SpongePressed
+  SpongeRaining:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  negativeFeedback:
+      Data1: 1867982435
+      Data2: 1323482607
+      Data3: 1302914203
+      Data4: 11404676
+    Path: event:/WIP/Quentin/SpongeRaining
+  SpongeEmpty:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  newFloor:
+      Data1: 306337236
+      Data2: 1235752494
+      Data3: -1945074298
+      Data4: -1212777583
+    Path: event:/WIP/Quentin/SpongeFull
+  SpongeRefill:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  stereoCheckStart:
-    reference:
-      Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
-  stereoCheckEnd:
-    reference:
-      Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
-  playerHeartRate:
-    reference:
-      Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
-  playerHeartVolume:
-    reference:
-      Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
-  playerSmallAttack:
+      Data1: 1565015110
+      Data2: 1309231005
+      Data3: 1507033526
+      Data4: -1583724431
+    Path: event:/WIP/Quentin/SpongeRefill
+  SpongeFull:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  playerHeavyAttack:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  playerGetHit:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  playerBlock:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  playerTryToBlock:
-    reference:
-      Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
-  playerCounterAttack:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  playerTryToCounterAttack:
-    reference:
-      Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+      Data1: 306337236
+      Data2: 1235752494
+      Data3: -1945074298
+      Data4: -1212777583
+    Path: event:/WIP/Quentin/SpongeFull

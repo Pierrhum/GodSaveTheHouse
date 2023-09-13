@@ -14,8 +14,9 @@ public class FmodEventsSO : ScriptableObject
     [Header("Gameplay")]
     public EventReference Explosion;
 
-    [Header("Player")]
+    [Header("Sponge")]
     public EventReference SpongePressed;
+    public EventReference SpongeRaining;
     public EventReference SpongeEmpty;
     public EventReference SpongeRefill;
     public EventReference SpongeFull;

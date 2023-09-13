@@ -18,6 +18,10 @@ public class AudioManager : Singleton<AudioManager>
     {
         RuntimeManager.StudioSystem.setParameterByName(parameterName, value);
     }
+    public void SetGlobalParameter(string parameterName, float value)
+    {
+        RuntimeManager.StudioSystem.setParameterByName(parameterName, value);
+    }
 
     public void SetEventInstanceParameter(EventInstance eventInstance, string parameterName, int value)
     {
