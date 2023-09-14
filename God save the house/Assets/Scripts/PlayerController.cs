@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     {
         sponge.Move(GameManager.Instance.GetSpongePosition(LerpValue));
         AudioManager.Instance.SetGlobalParameter("CloudPosition", LerpValue);
-        Debug.Log(LerpValue.ToString());
     }
     public void Move(float position)
     {

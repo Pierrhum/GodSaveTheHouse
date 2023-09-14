@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private House RightHouse;
     public Material FloodMaterial;
     public float BurningTime = 3f;
-    public float OverflowTime = 6f;
     public float OverflowLimit = 2f;
     public float SaveTime = 2f;
     public List<GameObject> FireParticles;
@@ -81,9 +80,10 @@ public class GameManager : MonoBehaviour
         if (!Saved) HousesDead++;
         else HousesSaved++;
 
+        Debug.Log("count : " + Houses.Count + " - Dead:" + HousesDead + " - Saved:" + HousesSaved);
         if (HousesDead + HousesSaved == Houses.Count)
         {
-            if(HousesSaved >= MinHouseToSave)  Victory();
+            if(HousesSaved >= MinHouseToSave) Victory();
             else GameOver();
         }
     }
