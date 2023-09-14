@@ -43,7 +43,7 @@
 			<value>highGain</value>
 		</property>
 		<property name="value">
-			<value>-20.5</value>
+			<value>-14.5</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{98bbee13-a9f1-42b4-8a27-98eef55e2be2}</destination>
@@ -54,7 +54,7 @@
 			<value>wetLevel</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>-4.5</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{317e28eb-7fe7-424b-a4c8-6d39ca04deda}</destination>
@@ -76,7 +76,7 @@
 			<value>midGain</value>
 		</property>
 		<property name="value">
-			<value>-19.5</value>
+			<value>-11.5</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{98bbee13-a9f1-42b4-8a27-98eef55e2be2}</destination>
@@ -87,7 +87,7 @@
 			<value>dryLevel</value>
 		</property>
 		<property name="value">
-			<value>-48</value>
+			<value>-80</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{317e28eb-7fe7-424b-a4c8-6d39ca04deda}</destination>
@@ -101,6 +101,9 @@
 	<object class="ADSRModulator" id="{63e140c0-80b2-41ba-a320-faf9e2f0ab11}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>snapshotIntensity</value>
+		</property>
+		<property name="attackTime">
+			<value>500</value>
 		</property>
 		<property name="attackShape">
 			<value>-0.130026549</value>
@@ -116,6 +119,9 @@
 		</property>
 		<property name="sustainValue">
 			<value>100</value>
+		</property>
+		<property name="releaseTime">
+			<value>500</value>
 		</property>
 		<property name="releaseShape">
 			<value>0.143549174</value>

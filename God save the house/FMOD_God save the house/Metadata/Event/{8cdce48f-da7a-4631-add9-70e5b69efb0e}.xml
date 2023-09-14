@@ -107,6 +107,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{49ab7837-a5e1-41e6-8f06-29ccaaa8c09a}">
+		<property name="volume">
+			<value>-3</value>
+		</property>
 		<property name="name">
 			<value>ExplosionBeforeFire</value>
 		</property>
