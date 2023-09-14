@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         if (!MainMenuVisible)
         {
             Houses.ForEach(house => house.StartBurning());
-            
+            UI.HideMainMenu();
         }
     }
 

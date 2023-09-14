@@ -2265,7 +2265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Position: 2
-  DelayBeforeBurning: 2
+  DelayBeforeBurning: 0
   Rooms:
   - {fileID: 1123209839}
   - {fileID: 856592657}
@@ -4275,7 +4275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Position: 1
-  DelayBeforeBurning: 2
+  DelayBeforeBurning: 0
   Rooms:
   - {fileID: 456419457}
   - {fileID: 1433121055}

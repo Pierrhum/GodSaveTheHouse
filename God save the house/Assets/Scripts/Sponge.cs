@@ -62,7 +62,8 @@ public class Sponge : MonoBehaviour
         else if (!activate && isRaining)
         {
             AudioManager.Instance.StopEvent(SpongeRaining);
-            AudioManager.Instance.StopEvent(TargetHouse.RainOnSmth);
+            if(TargetHouse)
+                AudioManager.Instance.StopEvent(TargetHouse.RainOnSmth);
             RainVFX.Stop();
             StopCoroutine(ConsumeCoroutine);
             if (TargetHouse && TargetHouse.isSavedRange())
