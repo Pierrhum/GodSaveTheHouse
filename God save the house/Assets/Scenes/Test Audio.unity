@@ -1644,6 +1644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63277b0a3bfcb1e40b804c36d7707b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShouldBurn: 1
   Position: 0
   DelayBeforeBurning: 0
   Rooms:
@@ -2400,6 +2401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63277b0a3bfcb1e40b804c36d7707b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShouldBurn: 1
   Position: 2
   DelayBeforeBurning: 2
   Rooms:
@@ -4111,6 +4113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63277b0a3bfcb1e40b804c36d7707b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShouldBurn: 1
   Position: 1
   DelayBeforeBurning: 5
   Rooms:
@@ -4477,7 +4480,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 272206227}
   MainMenuVisible: 1
-  WaterCapacity: 3
+  StartWaterCapacity: 3
+  MaxWaterCapacity: 3
   WaterRefill: 1
   MinHouseToSave: 1
   LeftHouse: {fileID: 333437373}
