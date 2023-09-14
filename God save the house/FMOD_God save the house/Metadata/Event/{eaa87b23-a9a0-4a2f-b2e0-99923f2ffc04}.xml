@@ -262,6 +262,9 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d3ce10ec-6a4a-4c10-9c95-1963eb244410}">
+		<property name="stereoPan">
+			<value>100</value>
+		</property>
 		<property name="overridingOutputFormat">
 			<value>1</value>
 		</property>
