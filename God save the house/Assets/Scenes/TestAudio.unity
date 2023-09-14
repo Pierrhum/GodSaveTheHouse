@@ -1509,6 +1509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Position: 0
+  DelayBeforeBurning: 1
   Rooms:
   - {fileID: 1365600192}
   - {fileID: 2075614083}
@@ -2237,7 +2238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626635138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.09, y: -1.19, z: 0.01}
+  m_LocalPosition: {x: 11.09, y: -1.17, z: 0.01}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2264,6 +2265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Position: 2
+  DelayBeforeBurning: 1
   Rooms:
   - {fileID: 1123209839}
   - {fileID: 856592657}
@@ -2947,8 +2949,8 @@ GameObject:
   m_Component:
   - component: {fileID: 971559538}
   - component: {fileID: 971559537}
-  - component: {fileID: 971559536}
   - component: {fileID: 971559535}
+  - component: {fileID: 971559539}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2989,14 +2991,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &971559536
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971559534}
-  m_Enabled: 1
 --- !u!20 &971559537
 Camera:
   m_ObjectHideFlags: 0
@@ -3055,6 +3049,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &971559539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971559534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1006511657
 GameObject:
   m_ObjectHideFlags: 0
@@ -3984,6 +3991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Position: 1
+  DelayBeforeBurning: 1
   Rooms:
   - {fileID: 456419457}
   - {fileID: 1433121055}
@@ -4257,11 +4265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2d2413ea012e848a8f5c29503ef7c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 0}
+  MainMenuVisible: 0
   WaterCapacity: 10
   WaterRefill: 1
+  MinHouseToSave: 1
   LeftHouse: {fileID: 333437373}
   RightHouse: {fileID: 626635143}
-  BurningTime: 10
+  BurningTime: 5
   OverflowTime: 5
   OverflowLimit: 2
   SaveTime: 1
@@ -4302,6 +4313,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fmodEvents: {fileID: 11400000, guid: fe83694f95681fe4291ae282b87c1daa, type: 2}
+  needDebug: 0
+--- !u!1 &1731890020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1731890022}
+  - component: {fileID: 1731890021}
+  m_Layer: 0
+  m_Name: HouseSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1731890021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731890020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55094b77da164544f9241fda18bb14ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  houses:
+  - {fileID: 333437369}
+  - {fileID: 1427804229}
+  - {fileID: 626635138}
+  delayRangeBetweenSpawns: {x: 2, y: 5}
+--- !u!4 &1731890022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731890020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.61471677, y: 4.3018293, z: 0.13300455}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786406712
 GameObject:
   m_ObjectHideFlags: 0

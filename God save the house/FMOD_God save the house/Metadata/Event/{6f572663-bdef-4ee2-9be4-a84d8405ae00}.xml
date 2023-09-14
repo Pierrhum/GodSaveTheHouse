@@ -65,7 +65,14 @@
 			<destination>{bf51d3eb-078e-4cdb-b843-8c4690c68d7c}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{12ef99f2-283a-4740-82b2-3247cb05e8ba}" />
+	<object class="EventAutomatableProperties" id="{12ef99f2-283a-4740-82b2-3247cb05e8ba}">
+		<property name="maxVoices">
+			<value>1</value>
+		</property>
+		<property name="voiceStealing">
+			<value>3</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{c0d1b540-986c-42cc-ba1e-f5da5f9f1ded}" />
 	<object class="GroupTrack" id="{29451d48-7ed3-417c-ab03-7617e7277ee3}">
 		<relationship name="automationTracks">
@@ -535,7 +542,13 @@
 			<value>0.45000000000000001</value>
 		</property>
 		<property name="value">
-			<value>-4</value>
+			<value>-7</value>
+		</property>
+		<property name="curveShape">
+			<value>0.5</value>
+		</property>
+		<property name="isSCurve">
+			<value>true</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{69c821ae-2518-44aa-88b7-bbcaad272b24}">
