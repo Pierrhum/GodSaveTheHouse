@@ -24,9 +24,6 @@
 	<object class="MixerBusPanner" id="{5ad6f986-8669-4da5-92ad-473ee7a625db}" />
 	<object class="MixerBusFader" id="{786810d7-9dd7-4bed-a81b-04b3df485b89}" />
 	<object class="ThreeEQEffect" id="{98bbee13-a9f1-42b4-8a27-98eef55e2be2}">
-		<property name="lowGain">
-			<value>-5</value>
-		</property>
 		<property name="crossoverSlope">
 			<value>0</value>
 		</property>
