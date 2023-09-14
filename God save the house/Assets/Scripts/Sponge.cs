@@ -109,7 +109,6 @@ public class Sponge : MonoBehaviour
             else if (Lerp > .3f) SetSprite(1);
             else SetSprite(2);
             AudioManager.Instance.SetGlobalParameter("RainIntensity", (1 - Lerp));
-            AudioManager.Instance.SetGlobalParameter("CloudPosition", .5f);
             
             yield return new WaitForSeconds(Time.deltaTime);
         }
