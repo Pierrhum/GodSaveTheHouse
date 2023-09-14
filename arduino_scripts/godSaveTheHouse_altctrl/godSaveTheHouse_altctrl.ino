@@ -1,4 +1,3 @@
-#include <CapacitiveSensor.h>
 
 #define BUZZER_PIN 3
 #define TRIGGER_PIN 13
@@ -32,7 +31,9 @@ unsigned long time_micro_since_previous_state = 0;
 float pressureBtnValue = 0;
 bool pressureBtnIsDown = false;
 
+float lakeBtnValue = 0;
 bool lakeBtnIsDown = false;
+bool lakeBtnPressed = false;
 
 unsigned long last_time_msg_sent =0;
 
@@ -45,22 +46,19 @@ enum Sensor_State {
 Sensor_State current_sensor_state = START_SEND;
 
 
-CapacitiveSensor cs_4_2 = CapacitiveSensor(4,2); // 10 megohm resistor between pins 4 & 2, pin 2 is sensor pin, add wire, foil
 
 void setup() {
   // put your setup code here, to run once:
-  cs_4_2.set_CS_AutocaL_Millis(0xFFFFFFFF); // turn off autocalibrate on channel 1 - just as an example 
-  cs_4_2.set_CS_Timeout_Millis(1000);
   Serial.begin(9600);
   pinMode(TRIGGER_PIN,OUTPUT);
-  pinMode(ECHO_PIN, INPUT);
+  pinMode(ECHO_PIN, INPUT); 
   /*pinMode(LED_BUILTIN, OUTPUT);
   pinMode(LED_1_PIN, OUTPUT);
   pinMode(LED_2_PIN, OUTPUT);
   pinMode(LED_3_PIN, OUTPUT);*/
 
    //Init btn
- //	pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(PRESSURE_PIN, INPUT_PULLUP);
   //pressureBtnPrevValue = analogRead(BUTTON_PIN);
   //pressureBtnValue = analogRead(BUTTON_PIN);
@@ -75,15 +73,25 @@ void loop() {
 // arbitrary delay to limit data to serial port 
   distanceSensorTest();
   testPressureBtn();
-  //testLakeButton();
+  testLakeButton();
   sendMsg();
   //delay(100);
 }
  long val =0;
 void testLakeButton(){
-  val= cs_4_2.capacitiveSensorRaw(30);
-  
-  lakeBtnIsDown = val != -2;
+   // Read pushbutton
+  lakeBtnValue = analogRead(BUTTON_PIN);
+  lakeBtnPressed= false;
+  if (lakeBtnValue < 200 && !lakeBtnIsDown){
+    lakeBtnPressed= true;
+    lakeBtnIsDown = true;
+    //triggerLed(LED_BUILTIN);
+  }
+  else if(lakeBtnValue > 500)
+  {
+    lakeBtnIsDown = false;
+  }
+ 
 }
 
 void distanceSensorTest(){
@@ -152,7 +160,7 @@ void testPressureBtn() {
   pressureBtnValue = analogRead(PRESSURE_PIN);
   pressureBtnValue = ((pressureBtnValue-pressureZero)*pressuretransducermaxPSI)/(pressureMax-pressureZero); //conversion equation to convert analog reading to psi
   pressureBtnIsDown= false;
-  if(pressureBtnValue > 0.1){
+  if(pressureBtnValue > 0.2){
     pressureBtnIsDown = true;
   }
 }
