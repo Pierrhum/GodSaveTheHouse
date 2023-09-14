@@ -585,7 +585,7 @@ PrefabInstance:
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
       propertyPath: ShouldBurn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
@@ -944,7 +944,7 @@ PrefabInstance:
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
       propertyPath: ShouldBurn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
@@ -1382,15 +1382,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 272206227}
   MainMenuVisible: 1
-  StartWaterCapacity: 5
-  MaxWaterCapacity: 2
+  StartWaterCapacity: 3
+  MaxWaterCapacity: 5
   WaterRefill: 1
-  MinHouseToSave: 1
+  MinHouseToSave: 2
   LeftHouse: {fileID: 285610500}
   RightHouse: {fileID: 449686270}
   FloodMaterial: {fileID: 0}
   BurningTime: 3
-  OverflowTime: 1.2
   OverflowLimit: 2
   SaveTime: 3
   FireParticles:
