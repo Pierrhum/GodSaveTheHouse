@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{8e689677-7064-4b46-a199-6b9b5f8f1332}">
+		<property name="name">
+			<value>Rain</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{a9de4d08-10e7-4d5f-9af9-1a6cdfcd419b}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{c8d384fe-89c1-43fa-88a4-27f50e60a6b5}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{baa71f65-0699-4cf0-a650-fcae6ed1e66c}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{a9de4d08-10e7-4d5f-9af9-1a6cdfcd419b}">
+		<relationship name="effects">
+			<destination>{62b268c3-02c3-49c5-8202-305007375f55}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{c8d384fe-89c1-43fa-88a4-27f50e60a6b5}" />
+	<object class="MixerBusFader" id="{62b268c3-02c3-49c5-8202-305007375f55}" />
+</objects>

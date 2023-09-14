@@ -136,11 +136,11 @@ MonoBehaviour:
     Path: event:/WIP/Quentin/SpongeRaining
   SpongeEmpty:
     Guid:
-      Data1: 306337236
-      Data2: 1235752494
-      Data3: -1945074298
-      Data4: -1212777583
-    Path: event:/WIP/Quentin/SpongeFull
+      Data1: 865502562
+      Data2: 1135900165
+      Data3: 2040937872
+      Data4: 301722707
+    Path: event:/WIP/Quentin/SpongeEmpty
   SpongeRefill:
     Guid:
       Data1: 1692191659
