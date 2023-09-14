@@ -60,7 +60,7 @@
 			<destination>{939800f0-2087-473d-83a1-2e32bce7ce5c}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{bf51d3eb-078e-4cdb-b843-8c4690c68d7c}</destination>
+			<destination>{baa71f65-0699-4cf0-a650-fcae6ed1e66c}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{d69472ad-9179-429b-a0c4-e28dc09cdf65}" />
@@ -154,6 +154,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{2d9861db-9787-4484-b4d5-b4eb14afde7f}">
+		<property name="volume">
+			<value>-5</value>
+		</property>
 		<property name="name">
 			<value>RainOnFloodedHouse</value>
 		</property>

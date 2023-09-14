@@ -9,10 +9,26 @@ public class AudioManager : Singleton<AudioManager>
     public static FmodEventsSO fmodEvents;
     [SerializeField] private FmodEventsSO _fmodEvents;
     [SerializeField] private bool needDebug = false;
+    [SerializeField] private Bus SFX;
+    [SerializeField] private FmodEventRefAndInstance pauseSnapshot;
 
     private void Awake()
     {
         fmodEvents = _fmodEvents;
+    }
+
+    public void GamePaused()
+    {
+        SFX.setPaused(true);
+        pauseSnapshot.instance = RuntimeManager.CreateInstance(pauseSnapshot.reference);
+        pauseSnapshot.instance.start();
+    }
+
+    public void GameUnpaused()
+    {
+        SFX.setPaused(false);
+        if (pauseSnapshot.instance.isValid())
+            pauseSnapshot.instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     public void SetGlobalParameter(string parameterName, int value)

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{0af97a1f-bb59-4369-8d65-3bcecc7a9c5f}">
+		<property name="name">
+			<value>Ambiances</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{090a2945-21d4-49d2-95d5-0266483af105}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{5ad6f986-8669-4da5-92ad-473ee7a625db}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{bf51d3eb-078e-4cdb-b843-8c4690c68d7c}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{090a2945-21d4-49d2-95d5-0266483af105}">
+		<relationship name="effects">
+			<destination>{786810d7-9dd7-4bed-a81b-04b3df485b89}</destination>
+			<destination>{98bbee13-a9f1-42b4-8a27-98eef55e2be2}</destination>
+			<destination>{317e28eb-7fe7-424b-a4c8-6d39ca04deda}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{5ad6f986-8669-4da5-92ad-473ee7a625db}" />
+	<object class="MixerBusFader" id="{786810d7-9dd7-4bed-a81b-04b3df485b89}" />
+	<object class="ThreeEQEffect" id="{98bbee13-a9f1-42b4-8a27-98eef55e2be2}">
+		<property name="lowGain">
+			<value>-5</value>
+		</property>
+		<property name="crossoverSlope">
+			<value>0</value>
+		</property>
+	</object>
+	<object class="SFXReverbEffect" id="{317e28eb-7fe7-424b-a4c8-6d39ca04deda}">
+		<property name="decayTime">
+			<value>8500</value>
+		</property>
+		<property name="wetLevel">
+			<value>-80</value>
+		</property>
+	</object>
+</objects>
