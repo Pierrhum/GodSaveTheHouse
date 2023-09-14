@@ -40,14 +40,19 @@ public class PlayerController : MonoBehaviour
     }
     public void Press(InputAction.CallbackContext context)
     {
-        if (context.canceled)
+        if (GameManager.Instance.MainMenuVisible && context.started)
+            GameManager.Instance.UI.HideMainMenu();
+        else
         {
-            sponge.SetRain(false);
-        }
-        else if (context.started)
-        {
-            sponge.SetRain(true);
-            AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongePressed);
+            if (context.canceled)
+            {
+                sponge.SetRain(false);
+            }
+            else if (context.started)
+            {
+                sponge.SetRain(true);
+                AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongePressed);
+            }
         }
     }
     

@@ -11,6 +11,8 @@ public class House : MonoBehaviour
 {
     [Header("Parameters")] 
     public HousePosition Position;
+    public float DelayBeforeBurning = 1f;
+    
     [Header("Components")] 
     public List<Room> Rooms;
     
@@ -19,15 +21,20 @@ public class House : MonoBehaviour
     public float waterTimer = 0f;
     
     [System.NonSerialized] public HouseState State = HouseState.Burning;
-    private int CurrentRoom = -1;
+    [System.NonSerialized] public  EventInstance RainOnSmth;
     private EventInstance BurningSFX;
     private EventInstance FireLevelSFX;
+    private int CurrentRoom = -1;
 
     private void Start()
     {
         Rooms.ForEach(R => R.Position = Position == HousePosition.L ? "L" : Position == HousePosition.R ? "R" : "C");
-        StartCoroutine(BurnCoroutine(2));
-        GameManager.Instance.HousesTotal++;
+        GameManager.Instance.Houses.Add(this);
+    }
+
+    public void StartBurning()
+    {
+        StartCoroutine(BurnCoroutine(DelayBeforeBurning));
     }
 
     public bool isOverflowedRange()
@@ -108,6 +115,11 @@ public class House : MonoBehaviour
             waterTimer += Time.deltaTime;
             if(waterTimer >= GameManager.Instance.SaveTime)
                 Rooms[CurrentRoom].EndBurning(true);
+            
+            if(!RainOnSmth.isValid() && State == HouseState.Burning)
+                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnFire);
+            else if(!RainOnSmth.isValid() && State == HouseState.Overflowing)
+                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnWater);
         }
     }
 
@@ -119,6 +131,7 @@ public class House : MonoBehaviour
                 if (isOverflowedRange()) State = HouseState.Overflowing;
                 else State = HouseState.Saved;
             Sponge.TargetHouse = null;
+            AudioManager.Instance.StopEvent(RainOnSmth);
         }
     }
 }

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("UI")] 
     public GameCanvas UI;
+    public bool MainMenuVisible = false;
     
     [Header("Sponge")] 
     public float WaterCapacity = 3f;
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
     public float PlayerSpeed = 1f;
     
     [System.NonSerialized] public Sponge Sponge;
-    [System.NonSerialized] public int HousesTotal = 0;
+    [System.NonSerialized] public List<House> Houses = new List<House>();
     private int HousesDead = 0;
     private int HousesSaved = 0;
     private float HousesDistance;
@@ -53,7 +54,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         HousesDistance = Vector3.Distance(LeftHouse.transform.position, RightHouse.transform.position);
-        
+        if (!MainMenuVisible)
+        {
+            Houses.ForEach(house => house.StartBurning());
+            
+        }
     }
 
     public GameObject GetRandomFire()
@@ -72,7 +77,7 @@ public class GameManager : MonoBehaviour
         if (!Saved) HousesDead++;
         else HousesSaved++;
 
-        if (HousesDead + HousesSaved == HousesTotal)
+        if (HousesDead + HousesSaved == Houses.Count)
         {
             if(HousesSaved >= MinHouseToSave)  Victory();
             else GameOver();

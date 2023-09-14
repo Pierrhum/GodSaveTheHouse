@@ -22,7 +22,6 @@ public class Sponge : MonoBehaviour
     public static bool isRaining = false;
     private EventInstance SpongeRefill;
     private EventInstance SpongeRaining;
-    private EventInstance RainOnSmth;
     private Coroutine ConsumeCoroutine;
     private Coroutine RefillCoroutine;
     private bool isRefilling = false;
@@ -48,8 +47,6 @@ public class Sponge : MonoBehaviour
     }
     public void SetRain(bool activate)
     {
-       
-        
         RainCollider.enabled = activate && WaterCapacity > 0;
         
         if (activate && !isRaining)
@@ -57,10 +54,6 @@ public class Sponge : MonoBehaviour
             if (WaterCapacity > 0)
             {
                 SpongeRaining = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.SpongeRaining);
-                if(TargetHouse.State == HouseState.Burning)
-                    RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnFire);
-                else if(TargetHouse.State == HouseState.Overflowing)
-                    RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnWater);
                 RainVFX.Play();
                 ConsumeCoroutine = StartCoroutine(ConsumeWater());
             } else 
@@ -69,7 +62,7 @@ public class Sponge : MonoBehaviour
         else if (!activate && isRaining)
         {
             AudioManager.Instance.StopEvent(SpongeRaining);
-            AudioManager.Instance.StopEvent(RainOnSmth);
+            AudioManager.Instance.StopEvent(TargetHouse.RainOnSmth);
             RainVFX.Stop();
             StopCoroutine(ConsumeCoroutine);
             if (TargetHouse && TargetHouse.isSavedRange())
@@ -80,7 +73,6 @@ public class Sponge : MonoBehaviour
 
     public void SetRefill(bool activate)
     {
-        
         if (activate && !isRefilling)
         {
             SpongeRefill = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.SpongeRefill);

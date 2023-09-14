@@ -8,6 +8,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public static FmodEventsSO fmodEvents;
     [SerializeField] private FmodEventsSO _fmodEvents;
+    [SerializeField] private bool needDebug = false;
 
     private void Awake()
     {
@@ -31,7 +32,8 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayOnShotEvent(EventReference eventReference)
     {
         RuntimeManager.PlayOneShot(eventReference);
-        Debug.Log("[Audio] " + $"Playing one shot event {eventReference}.");
+        if(needDebug)
+            Debug.Log("[Audio] " + $"Playing one shot event {eventReference}.");
     }
 
     public EventInstance PlayEvent(EventReference eventReference)
@@ -40,7 +42,8 @@ public class AudioManager : Singleton<AudioManager>
         eventInstance = RuntimeManager.CreateInstance(eventReference);
         eventInstance.start();
         eventInstance.release();
-        Debug.Log("[Audio] " + $"Playing event {GetEventPath(eventInstance)}.");
+        if(needDebug)
+            Debug.Log("[Audio] " + $"Playing event {GetEventPath(eventInstance)}.");
         return eventInstance;
     }
 
@@ -48,7 +51,8 @@ public class AudioManager : Singleton<AudioManager>
     {
         eventInstance.start();
         eventInstance.release();
-        Debug.Log("[Audio] " + $"Playing event {GetEventPath(eventInstance)}.");
+        if(needDebug)
+            Debug.Log("[Audio] " + $"Playing event {GetEventPath(eventInstance)}.");
     }
 
     public void PlayEvent(FmodEventRefAndInstance refAndInst)
@@ -67,16 +71,19 @@ public class AudioManager : Singleton<AudioManager>
             {
                 eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 eventInstance.release();
-                Debug.Log("[Audio] " + $"Event instance {GetEventPath(eventInstance)} has been stopped successfully!");
+                if(needDebug)
+                    Debug.Log("[Audio] " + $"Event instance {GetEventPath(eventInstance)} has been stopped successfully!");
             }
             else
             {
-                Debug.Log("[Audio] " + $"Event instance {GetEventPath(eventInstance)} is already stopped.");
+                if(needDebug)
+                    Debug.Log("[Audio] " + $"Event instance {GetEventPath(eventInstance)} is already stopped.");
             }
         }
         else
         {
-            Debug.Log("[Audio] " + $"Event instance {GetEventPath(eventInstance)} was not valid!");
+            if(needDebug)
+                Debug.Log("[Audio] " + $"Event instance {GetEventPath(eventInstance)} was not valid!");
         }
     }
 
