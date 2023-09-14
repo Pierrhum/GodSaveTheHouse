@@ -47,7 +47,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _MaskIntensity: 0.415
+    - _MaskIntensity: 0
     - _MaskPosition: 0
     - _Step: 0.132
     - _Steps: 3

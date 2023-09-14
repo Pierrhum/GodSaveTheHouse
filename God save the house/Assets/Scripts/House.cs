@@ -10,6 +10,7 @@ public enum HousePosition { L, C, R }
 public class House : MonoBehaviour
 {
     [Header("Parameters")] 
+    public bool ShouldBurn = true;
     public HousePosition Position;
     public float DelayBeforeBurning = 1f;
     
@@ -28,13 +29,17 @@ public class House : MonoBehaviour
 
     private void Start()
     {
-        Rooms.ForEach(R => R.Position = Position == HousePosition.L ? "L" : Position == HousePosition.R ? "R" : "C");
-        GameManager.Instance.Houses.Add(this);
+        if (ShouldBurn)
+        {
+            Rooms.ForEach(R => R.Position = Position == HousePosition.L ? "L" : Position == HousePosition.R ? "R" : "C");
+            GameManager.Instance.Houses.Add(this);
+        }
     }
 
     public void StartBurning()
     {
-        StartCoroutine(BurnCoroutine(DelayBeforeBurning));
+        if(ShouldBurn)
+            StartCoroutine(BurnCoroutine(DelayBeforeBurning));
     }
 
     public bool isOverflowedRange()

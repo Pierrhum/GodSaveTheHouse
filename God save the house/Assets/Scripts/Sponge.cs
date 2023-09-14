@@ -29,12 +29,17 @@ public class Sponge : MonoBehaviour
 
     public float GetLerpWaterCapacity()
     {
-        return WaterCapacity / GameManager.Instance.WaterCapacity;
+        return WaterCapacity / GameManager.Instance.MaxWaterCapacity;
     }
 
     private void Start()
     {
-        WaterCapacity = GameManager.Instance.WaterCapacity;
+        WaterCapacity = GameManager.Instance.StartWaterCapacity;
+        
+        float Lerp = GetLerpWaterCapacity();
+        if (Lerp > .6f) SetSprite(0);
+        else if (Lerp > .3f) SetSprite(1);
+        else SetSprite(2);
     }
 
     public void Move(Vector3 DeltaPos)
@@ -77,7 +82,7 @@ public class Sponge : MonoBehaviour
         if (activate && !isRefilling)
         {
             SpongeRefill = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.SpongeRefill);
-                if(WaterCapacity < GameManager.Instance.WaterCapacity)
+                if(WaterCapacity < GameManager.Instance.MaxWaterCapacity)
                     RefillCoroutine = StartCoroutine(RefillWater());
         }
         else if(!activate && isRefilling)
@@ -118,7 +123,7 @@ public class Sponge : MonoBehaviour
     
     private IEnumerator RefillWater()
     {
-        while (WaterCapacity < GameManager.Instance.WaterCapacity)
+        while (WaterCapacity < GameManager.Instance.MaxWaterCapacity)
         {
             WaterCapacity += Time.deltaTime;
             float Lerp = GetLerpWaterCapacity();

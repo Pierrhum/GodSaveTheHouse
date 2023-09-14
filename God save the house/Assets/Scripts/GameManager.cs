@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public bool MainMenuVisible = false;
 
     [Header("Sponge")] 
-    public float WaterCapacity = 3f;
+    public float StartWaterCapacity = 3f;
+    public float MaxWaterCapacity = 3f;
     public float WaterRefill = 1f;
 
     [Header("Houses")] 

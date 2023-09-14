@@ -47,26 +47,10 @@ public class PlayerController : MonoBehaviour
     }
     public void Press(InputAction.CallbackContext context)
     {
-        if(context.started && Sponge.isRefilling)
-            GameManager.Instance.Pause(CanPlay);
-            
-        if (GameManager.Instance.MainMenuVisible && context.started)
-        {
-            CanPlay = true;
-            GameManager.Instance.UI.HideMainMenu();
-        }
-        else
-        {
-            if (context.canceled)
-            {
-                sponge.SetRain(false);
-            }
-            else if (context.started)
-            {
-                sponge.SetRain(true);
-                AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongePressed);
-            }
-        }
+        if (context.started)
+            Press(true);
+        else if (context.canceled)
+            Press(false);
     }
     
     public void Press(bool press)
