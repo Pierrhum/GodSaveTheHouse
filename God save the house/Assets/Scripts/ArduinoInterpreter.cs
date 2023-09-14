@@ -8,6 +8,9 @@ public class ArduinoInterpreter : MonoBehaviour
    [SerializeField] private PlayerController playerController;
    [SerializeField] private ArduinoListener listener;
 
+   private bool prevValueLake = false;
+   private bool prevValuePressure = false;
+   
    private void Start()
    {
       listener.ArduinoDataReceived += ArduinoToPlayer;
@@ -15,8 +18,28 @@ public class ArduinoInterpreter : MonoBehaviour
 
    private void ArduinoToPlayer(ControllerValues values)
    {
-      playerController.RefillWater(values.LakeButtonIsPressed);
-      playerController.Press(values.PressureButtonIsPressed);
-      playerController.Move(values.HandPositionFromCaptor);
+      if (!values.LakeButtonIsPressed || !values.PressureButtonIsPressed)
+      {
+         if (prevValueLake != values.LakeButtonIsPressed)
+         {
+            playerController.RefillWater(values.LakeButtonIsPressed);
+            prevValueLake = values.LakeButtonIsPressed;
+         }
+
+         if (prevValuePressure != values.PressureButtonIsPressed)
+         {
+            playerController.Press(values.PressureButtonIsPressed);
+            prevValuePressure = values.PressureButtonIsPressed;
+         }
+      }
+      else
+      {
+         //Pause or start
+      }
+
+      if (values.HandPositionFromCaptor < 95)
+      {
+         playerController.Move(values.HandPositionFromCaptor);
+      }
    }
 }
