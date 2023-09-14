@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 inputMovement;
     private float lerp;
-    private const float maxDistance = 85f;
+    private const float maxDistance = 50f;
     private const float minDistance = 15f;
     
 
@@ -28,14 +28,19 @@ public class PlayerController : MonoBehaviour
     }
     public void Move(float position)
     {
-        if (position < minDistance)
+        if (position > maxDistance + 10)
         {
-            position = minDistance;
+            return;
         }
-        else if (position > maxDistance)
+        if (position > maxDistance)
         {
             position = maxDistance;
         }
+        else if (position < minDistance)
+        {
+            position = minDistance;
+        }
+       
 
         float LerpValue = (position - minDistance) / (maxDistance - minDistance);
         SetPlayerPosition(LerpValue);
