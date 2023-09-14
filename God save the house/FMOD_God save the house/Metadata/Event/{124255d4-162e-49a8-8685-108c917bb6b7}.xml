@@ -130,9 +130,6 @@
 		<property name="commandType">
 			<value>1</value>
 		</property>
-		<relationship name="commandTarget">
-			<destination>{5d483c46-479d-4e09-b681-d35971489aa1}</destination>
-		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{dee1f718-dac8-4820-b549-1df8c2c6eb6d}">
 		<property name="name">

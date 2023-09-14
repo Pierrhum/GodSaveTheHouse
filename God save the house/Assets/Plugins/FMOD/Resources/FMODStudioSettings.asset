@@ -420,7 +420,7 @@ MonoBehaviour:
   sourceProjectPath: FMOD_God save the house/FMOD_God save the house.fspro
   sourceBankPath: FMOD_God save the house/Build
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0
