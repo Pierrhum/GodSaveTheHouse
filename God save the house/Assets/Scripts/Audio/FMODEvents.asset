@@ -37,10 +37,10 @@ MonoBehaviour:
     Path: event:/WIP/Gorik/ExplosionBeforeFire
   FireLevel:
   - Guid:
-      Data1: -1470482333
-      Data2: 1079537542
-      Data3: -1322965583
-      Data4: -1506092569
+      Data1: 1575461393
+      Data2: 1157203651
+      Data3: 1455399856
+      Data4: -1560717105
     Path: event:/WIP/Quentin/HouseFireLevelL
   - Guid:
       Data1: -1535603503
@@ -49,10 +49,10 @@ MonoBehaviour:
       Data4: 344309820
     Path: event:/WIP/Quentin/HouseFireLevelC
   - Guid:
-      Data1: -1523626866
-      Data2: 1308710174
-      Data3: -1318601575
-      Data4: 711936213
+      Data1: -358057181
+      Data2: 1244637600
+      Data3: -1835409230
+      Data4: 83636031
     Path: event:/WIP/Quentin/HouseFireLevelR
   HouseBurning:
   - Guid:

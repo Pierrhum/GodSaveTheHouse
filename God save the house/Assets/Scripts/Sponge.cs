@@ -20,11 +20,11 @@ public class Sponge : MonoBehaviour
     public float WaterCapacity;
 
     public static bool isRaining = false;
+    public static bool isRefilling = false;
     private EventInstance SpongeRefill;
     private EventInstance SpongeRaining;
     private Coroutine ConsumeCoroutine;
     private Coroutine RefillCoroutine;
-    private bool isRefilling = false;
     private int CurrentSprite = 0;
 
     public float GetLerpWaterCapacity()
@@ -82,8 +82,9 @@ public class Sponge : MonoBehaviour
         }
         else if(!activate && isRefilling)
         {
-            StopCoroutine(RefillCoroutine);
             AudioManager.Instance.StopEvent(SpongeRefill);
+            if(RefillCoroutine != null)
+                StopCoroutine(RefillCoroutine);
         }
         isRefilling = activate;
     }

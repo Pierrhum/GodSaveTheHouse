@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public Sponge sponge;
+    public static bool CanPlay = false;
 
     private Vector2 inputMovement;
     private float lerp;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerPosition(float LerpValue)
     {
         sponge.Move(GameManager.Instance.GetSpongePosition(LerpValue));
+        AudioManager.Instance.SetGlobalParameter("CloudPosition", LerpValue);
     }
     public void Move(float position)
     {
@@ -35,13 +37,18 @@ public class PlayerController : MonoBehaviour
         }
 
         float LerpValue = (position - minDistance) / (maxDistance - minDistance);
-        Debug.Log(LerpValue);
         SetPlayerPosition(LerpValue);
     }
     public void Press(InputAction.CallbackContext context)
     {
+        if(context.started && Sponge.isRefilling)
+            GameManager.Instance.Pause(CanPlay);
+            
         if (GameManager.Instance.MainMenuVisible && context.started)
+        {
+            CanPlay = true;
             GameManager.Instance.UI.HideMainMenu();
+        }
         else
         {
             if (context.canceled)

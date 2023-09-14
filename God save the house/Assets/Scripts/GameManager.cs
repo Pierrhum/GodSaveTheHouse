@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("UI")] 
     public GameCanvas UI;
     public bool MainMenuVisible = false;
-    
+
     [Header("Sponge")] 
     public float WaterCapacity = 3f;
     public float WaterRefill = 1f;
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         HousesDistance = Vector3.Distance(LeftHouse.transform.position, RightHouse.transform.position);
         if (!MainMenuVisible)
         {
+            PlayerController.CanPlay = true;
             Houses.ForEach(house => house.StartBurning());
             UI.HideMainMenu();
         }
@@ -82,9 +83,24 @@ public class GameManager : MonoBehaviour
             if(HousesSaved >= MinHouseToSave)  Victory();
             else GameOver();
         }
-
     }
 
+    public void Pause(bool On)
+    {
+
+        if (On)
+        {
+            AudioManager.Instance.GamePaused();
+            Time.timeScale = 0;
+        }
+        else
+        {
+            AudioManager.Instance.GameUnpaused();
+            Time.timeScale = 1;
+        }
+        
+        PlayerController.CanPlay = !On;
+    }
     private void GameOver()
     {
         UI.GameOverScreen();
