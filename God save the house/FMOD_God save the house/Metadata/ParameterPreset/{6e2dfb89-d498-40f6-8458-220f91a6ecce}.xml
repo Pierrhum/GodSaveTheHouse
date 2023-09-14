@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{6e2dfb89-d498-40f6-8458-220f91a6ecce}">
+		<property name="name">
+			<value>FillCloud</value>
+		</property>
+		<relationship name="folder">
+			<destination>{56cc55d0-7774-4ceb-a854-1f3709fa9e73}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{05a2abd8-a614-4204-a892-a7c7c09a61b9}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{05a2abd8-a614-4204-a892-a7c7c09a61b9}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
