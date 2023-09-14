@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{efae7b6b-2c9a-4ad9-8a98-696d8c51f678}">
+		<property name="assetPath">
+			<value>Amb_Pad_Wind_01.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>39.733166666666669</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26ea96ea-23fc-4846-beae-d60e40b64fdd}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -10,7 +10,7 @@ public class FmodEventsSO : ScriptableObject
     public FmodEventRefAndInstance test1;
 
     [Header("Ambiances")]
-    public FmodEventRefAndInstance test2;
+    public EventReference Ambiance;
 
     [Header("Gameplay")]
     public EventReference Explosion;

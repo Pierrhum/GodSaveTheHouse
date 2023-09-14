@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start()
-    {
+    { 
+        AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.Ambiance);
         HousesDistance = Vector3.Distance(LeftHouse.transform.position, RightHouse.transform.position);
         if (!MainMenuVisible)
         {

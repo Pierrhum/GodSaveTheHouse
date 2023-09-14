@@ -20,14 +20,13 @@ MonoBehaviour:
         Data3: 0
         Data4: 0
       Path: 
-  test2:
-    reference:
-      Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+  Ambiance:
+    Guid:
+      Data1: 483571366
+      Data2: 1318123757
+      Data3: -1725654338
+      Data4: -1819810305
+    Path: event:/WIP/Gorik/Ambiance
   Explosion:
     Guid:
       Data1: -1931680625

@@ -15,6 +15,7 @@ public class AudioManager : Singleton<AudioManager>
     private void Awake()
     {
         fmodEvents = _fmodEvents;
+        SFX = RuntimeManager.GetBus("bus:/SFX");
     }
 
     public void GamePaused()
