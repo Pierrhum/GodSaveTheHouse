@@ -91,12 +91,16 @@ public class House : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (State == HouseState.Burnt || State == HouseState.Drown) return;
+        
         Sponge.TargetHouse = this;
         AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.HouseSelected[(int)Position]);
     }
 
     private void OnTriggerStay(Collider other)
     {
+        if (State == HouseState.Burnt || State == HouseState.Drown) return;
+        
         if (Sponge.isRaining && CurrentRoom >= 0)
         {
             waterTimer += Time.deltaTime;
@@ -104,8 +108,6 @@ public class House : MonoBehaviour
             {
                 Rooms[CurrentRoom].EndBurning(true);
                 Flooding((waterTimer - GameManager.Instance.SaveTime) / GameManager.Instance.OverflowLimit);
-                if(waterTimer > GameManager.Instance.SaveTime + GameManager.Instance.OverflowLimit)
-                    State = HouseState.Drown;
             }
             
             if(!RainOnSmth.isValid() && State == HouseState.Burning)
@@ -129,18 +131,18 @@ public class House : MonoBehaviour
     
     public void Flooding(float LerpValue)
     {
+        Debug.Log(LerpValue.ToString());
         if (State == HouseState.Overflowing)
         {
-            if(LerpValue >= 1) State = HouseState.Drown;
+            if(LerpValue >= 1f) 
+            {
+                State = HouseState.Drown;
+                Debug.Log("DROWN");
+                GameManager.Instance.HouseEnd(false);
+                GameManager.Instance.FloodMaterial.SetFloat("MaskIntensity", 1f);
+            }
             else
                 GameManager.Instance.FloodMaterial.SetFloat("MaskIntensity", LerpValue);
         }
-
-        if (State == HouseState.Drown)
-        {
-            GameManager.Instance.HouseEnd(false);
-            GameManager.Instance.FloodMaterial.SetFloat("MaskIntensity", 1f);
-        }
     }
-    
 }
