@@ -68,9 +68,18 @@ public class PlayerController : MonoBehaviour
     {
         if (press)
         {
-            sponge.SetRain(true);
-            AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongePressed);
-            
+            if (GameManager.Instance.MainMenuVisible)
+            {
+                CanPlay = true;
+                GameManager.Instance.UI.HideMainMenu();
+            }
+            else if(Sponge.isRefilling)
+                GameManager.Instance.Pause(CanPlay);
+            else
+            {
+                sponge.SetRain(true);
+                AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongePressed);
+            }
         }
         else
         {

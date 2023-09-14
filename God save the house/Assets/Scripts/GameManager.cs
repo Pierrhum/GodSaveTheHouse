@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int MinHouseToSave = 1;
     [SerializeField] private House LeftHouse;
     [SerializeField] private House RightHouse;
+    public Material FloodMaterial;
     public float BurningTime = 3f;
     public float OverflowTime = 6f;
     public float OverflowLimit = 2f;

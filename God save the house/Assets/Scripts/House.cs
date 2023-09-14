@@ -80,26 +80,8 @@ public class House : MonoBehaviour
         AudioManager.Instance.StopEvent(BurningSFX);
         AudioManager.Instance.StopEvent(FireLevelSFX);
         
-        if (State == HouseState.Overflowing) StartCoroutine(OverflowCoroutine());
         if (State == HouseState.Saved) GameManager.Instance.HouseEnd(true);
         if(State == HouseState.Burnt) GameManager.Instance.HouseEnd(false);
-    }
-
-    private IEnumerator OverflowCoroutine()
-    {
-        while (State == HouseState.Overflowing)
-        {
-            if(waterTimer > GameManager.Instance.SaveTime + GameManager.Instance.OverflowTime)
-                State = HouseState.Drown;
-            else
-            {
-                GetComponent<SpriteRenderer>().color = Color.Lerp(Color.white, Color.blue, waterTimer / (GameManager.Instance.SaveTime + GameManager.Instance.OverflowTime));
-                waterTimer += Time.deltaTime;
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-        }
-        
-        if(State == HouseState.Drown) GameManager.Instance.HouseEnd(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -113,8 +95,13 @@ public class House : MonoBehaviour
         if (Sponge.isRaining && CurrentRoom >= 0)
         {
             waterTimer += Time.deltaTime;
-            if(waterTimer >= GameManager.Instance.SaveTime)
+            if (waterTimer >= GameManager.Instance.SaveTime)
+            {
                 Rooms[CurrentRoom].EndBurning(true);
+                Flooding((waterTimer - GameManager.Instance.SaveTime) / GameManager.Instance.OverflowLimit);
+                if(waterTimer > GameManager.Instance.SaveTime + GameManager.Instance.OverflowLimit)
+                    State = HouseState.Drown;
+            }
             
             if(!RainOnSmth.isValid() && State == HouseState.Burning)
                 RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnFire);
@@ -134,4 +121,21 @@ public class House : MonoBehaviour
             AudioManager.Instance.StopEvent(RainOnSmth);
         }
     }
+    
+    public void Flooding(float LerpValue)
+    {
+        if (State == HouseState.Overflowing)
+        {
+            if(LerpValue >= 1) State = HouseState.Drown;
+            else
+                GameManager.Instance.FloodMaterial.SetFloat("MaskIntensity", LerpValue);
+        }
+
+        if (State == HouseState.Drown)
+        {
+            GameManager.Instance.HouseEnd(false);
+            GameManager.Instance.FloodMaterial.SetFloat("MaskIntensity", 1f);
+        }
+    }
+    
 }
