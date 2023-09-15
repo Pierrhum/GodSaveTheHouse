@@ -10,6 +10,7 @@ public class FmodEventsSO : ScriptableObject
     public EventReference UIButton;
     
     [Header("Musics")]
+    public FmodEventRefAndInstance Victory;
     public FmodEventRefAndInstance Defeat;
 
     [Header("Ambiances")]
