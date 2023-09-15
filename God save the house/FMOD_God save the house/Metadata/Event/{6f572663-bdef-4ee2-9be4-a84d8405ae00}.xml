@@ -162,7 +162,7 @@
 			<value>5</value>
 		</property>
 		<property name="volume">
-			<value>-6.5</value>
+			<value>-10</value>
 		</property>
 		<property name="looping">
 			<value>true</value>
@@ -200,9 +200,6 @@
 		<property name="length">
 			<value>5</value>
 		</property>
-		<property name="volume">
-			<value>4</value>
-		</property>
 		<property name="looping">
 			<value>true</value>
 		</property>
@@ -238,9 +235,6 @@
 		</property>
 		<property name="length">
 			<value>5.0000000000000018</value>
-		</property>
-		<property name="volume">
-			<value>2.5</value>
 		</property>
 		<property name="looping">
 			<value>true</value>
@@ -426,7 +420,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>-3</value>
 		</property>
 		<property name="curveShape">
 			<value>0.5</value>
@@ -440,7 +434,7 @@
 			<value>0.17000000000000001</value>
 		</property>
 		<property name="value">
-			<value>-2</value>
+			<value>-4</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{26d65bc3-82dc-4cae-a2a3-e1f4e3bb74c3}">
@@ -484,7 +478,7 @@
 			<value>0.35000000000000003</value>
 		</property>
 		<property name="value">
-			<value>-2</value>
+			<value>-11</value>
 		</property>
 		<property name="curveShape">
 			<value>0.5</value>
@@ -520,7 +514,7 @@
 			<value>0.58999999999999997</value>
 		</property>
 		<property name="value">
-			<value>-4</value>
+			<value>-13</value>
 		</property>
 		<property name="curveShape">
 			<value>-1</value>

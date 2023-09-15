@@ -133,20 +133,17 @@ public class House : MonoBehaviour
     
     public void Flooding(float LerpValue)
     {
-        if (State == HouseState.Overflowing)
+        if(LerpValue >= 1f) 
         {
-            if(LerpValue >= 1f) 
-            {
-                State = HouseState.Drown;
-                GameManager.Instance.HouseEnd(false);
-                Rooms.ForEach(R => R.Flood(1f));
-                FloodMaterial.SetFloat("MaskIntensity", 1f);
-            }
-            else
-            {
-                FloodMaterial.SetFloat("MaskIntensity", LerpValue);
-                Rooms.ForEach(R => R.Flood(LerpValue));
-            }
+            State = HouseState.Drown;
+            GameManager.Instance.HouseEnd(false);
+            Rooms.ForEach(R => R.Flood(1f));
+            FloodMaterial.SetFloat("_MaskIntensity", 1f);
+        }
+        else
+        {
+            Rooms.ForEach(R => R.Flood(LerpValue));
+            FloodMaterial.SetFloat("_MaskIntensity", LerpValue);
         }
     }
 }

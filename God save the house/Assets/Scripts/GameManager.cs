@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
 
     private void Victory()
     {
+        AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.Victory);
         UI.VictoryScreen();
     }
 }

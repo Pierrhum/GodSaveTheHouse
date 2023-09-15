@@ -125,6 +125,9 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{ea79c8b1-c69b-4816-888c-5334eb425ea1}">
+		<property name="isAsync">
+			<value>true</value>
+		</property>
 		<property name="length">
 			<value>2.5456249999999998</value>
 		</property>
@@ -226,7 +229,7 @@
 		</relationship>
 		<relationship name="automationPoints">
 			<destination>{241a690f-594f-4d67-9561-f8aac2b87f3b}</destination>
-			<destination>{889a3633-a9e1-478e-b8c9-d3479fff74f6}</destination>
+			<destination>{8695b492-2a5a-4957-8a8e-883b4fcdd9b7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{a689dd2f-0bcd-4fc0-8782-3c049db9733b}" />
@@ -244,15 +247,15 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-8</value>
+			<value>-16</value>
 		</property>
 	</object>
-	<object class="AutomationPoint" id="{889a3633-a9e1-478e-b8c9-d3479fff74f6}">
+	<object class="AutomationPoint" id="{8695b492-2a5a-4957-8a8e-883b4fcdd9b7}">
 		<property name="position">
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>15</value>
+			<value>17</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{5fe2b4c7-89d2-4283-b336-ae7fa34cb5ae}">
