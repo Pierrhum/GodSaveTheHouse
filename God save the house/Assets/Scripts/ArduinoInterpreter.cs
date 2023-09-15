@@ -18,28 +18,28 @@ public class ArduinoInterpreter : MonoBehaviour
 
    private void ArduinoToPlayer(ControllerValues values)
    {
-      if (!values.LakeButtonIsPressed || !values.PressureButtonIsPressed)
+      if (!GameManager.Instance.EndMenuVisible)
       {
-         if (prevValueLake != values.LakeButtonIsPressed)
-         {
-            playerController.RefillWater(values.LakeButtonIsPressed);
-            prevValueLake = values.LakeButtonIsPressed;
-         }
-
          if (prevValuePressure != values.PressureButtonIsPressed)
          {
             playerController.Press(values.PressureButtonIsPressed);
             prevValuePressure = values.PressureButtonIsPressed;
          }
+         if (prevValueLake != values.LakeButtonIsPressed) {
+            playerController.RefillWater(values.LakeButtonIsPressed); 
+            prevValueLake = values.LakeButtonIsPressed;
+         }
+
+   
+
+         if (values.HandPositionFromCaptor < 80)
+         {
+            playerController.Move(values.HandPositionFromCaptor);
+         }
       }
       else
       {
-         //Pause or start
-      }
-
-      if (values.HandPositionFromCaptor < 95)
-      {
-         playerController.Move(values.HandPositionFromCaptor);
+         playerController.SelectMenuButton(values);
       }
    }
 }

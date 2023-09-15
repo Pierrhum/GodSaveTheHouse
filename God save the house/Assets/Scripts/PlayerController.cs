@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
 {
     public Sponge sponge;
     public static bool CanPlay = false;
-
+    [SerializeField] private GameCanvas gameCanvas;
     private Vector2 inputMovement;
     private float lerp;
-    private const float maxDistance = 50f;
-    private const float minDistance = 15f;
+    public const float maxDistance = 50f;
+    public const float minDistance = 15f;
     
 
     public void Move(InputAction.CallbackContext context)
@@ -96,5 +96,29 @@ public class PlayerController : MonoBehaviour
             SetPlayerPosition(lerp);
         }
 
+    }
+
+    public void SelectMenuButton(ControllerValues values)
+    {
+        if (values.HandPositionFromCaptor < (maxDistance / 2f + minDistance / 2f))
+        {
+           gameCanvas.SetHoverRetryButton();
+        }
+        else
+        {
+            gameCanvas.SetHoverQuitButton();
+        }
+        if (values.PressureButtonIsPressed)
+        {
+            if (values.HandPositionFromCaptor < (maxDistance / 2f + minDistance / 2f))
+            {
+                gameCanvas.Retry();
+            }
+            else
+            {
+                gameCanvas.Quit();
+            }
+        }
+      
     }
 }
