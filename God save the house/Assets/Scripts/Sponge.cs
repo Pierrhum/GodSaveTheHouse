@@ -135,6 +135,8 @@ public class Sponge : MonoBehaviour
             else if (Lerp > .3f) SetSprite(1);
             else SetSprite(2);
             
+            AudioManager.Instance.SetGlobalParameter("FillCloud", Lerp);
+            
             yield return new WaitForSeconds(Time.deltaTime);
         }
         AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.SpongeFull);
