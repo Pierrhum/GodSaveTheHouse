@@ -1390,7 +1390,7 @@ MonoBehaviour:
   RightHouse: {fileID: 449686270}
   FloodMaterial: {fileID: 0}
   BurningTime: 3
-  OverflowLimit: 2
+  OverflowLimit: 1.5
   SaveTime: 1
   FireParticles:
   - {fileID: 5453813337987338184, guid: 612b84f7f84ed744f978caf8d9e097bc, type: 3}
