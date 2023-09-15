@@ -209,7 +209,7 @@
 			<value>-80</value>
 		</property>
 		<property name="attackTime">
-			<value>280</value>
+			<value>120</value>
 		</property>
 		<property name="holdTime">
 			<value>0</value>
@@ -218,7 +218,7 @@
 			<value>0</value>
 		</property>
 		<property name="releaseTime">
-			<value>8000</value>
+			<value>280</value>
 		</property>
 		<property name="releaseShape">
 			<value>-0.197351336</value>

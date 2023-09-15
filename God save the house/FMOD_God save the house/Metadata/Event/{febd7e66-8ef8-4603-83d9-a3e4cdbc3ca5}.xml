@@ -85,7 +85,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{f3519587-a6b0-4415-91e1-13bb89919243}">
 		<property name="volume">
-			<value>2.5</value>
+			<value>10</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{d897a5bc-ad7c-45d0-884a-cbb08712ebf9}</destination>
@@ -153,7 +153,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{3eac4c37-920f-460b-8eb5-2d7eff70fb7a}">
 		<property name="volume">
-			<value>-5</value>
+			<value>5.5</value>
 		</property>
 		<property name="name">
 			<value>RainOnFloodedHouse</value>
@@ -196,7 +196,7 @@
 			<value>-80</value>
 		</property>
 		<property name="attackTime">
-			<value>1600</value>
+			<value>80</value>
 		</property>
 		<property name="attackShape">
 			<value>-0.095856823</value>
@@ -208,7 +208,7 @@
 			<value>0</value>
 		</property>
 		<property name="releaseTime">
-			<value>1200</value>
+			<value>540</value>
 		</property>
 		<property name="releaseShape">
 			<value>-0.197351336</value>
