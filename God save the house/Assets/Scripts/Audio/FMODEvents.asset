@@ -114,14 +114,38 @@ MonoBehaviour:
       Data4: -1554732576
     Path: event:/WIP/Quentin/HouseSafe
   RainOnFire:
-    Guid:
+  - Guid:
+      Data1: -294082580
+      Data2: 1292770723
+      Data3: -1891036490
+      Data4: -289279467
+    Path: event:/WIP/Gorik/RainOnFire
+  - Guid:
+      Data1: -294082580
+      Data2: 1292770723
+      Data3: -1891036490
+      Data4: -289279467
+    Path: event:/WIP/Gorik/RainOnFire
+  - Guid:
       Data1: -294082580
       Data2: 1292770723
       Data3: -1891036490
       Data4: -289279467
     Path: event:/WIP/Gorik/RainOnFire
   RainOnWater:
-    Guid:
+  - Guid:
+      Data1: 988375670
+      Data2: 1211676347
+      Data3: -974448471
+      Data4: -1199301340
+    Path: event:/WIP/Gorik/RainOnWater
+  - Guid:
+      Data1: 988375670
+      Data2: 1211676347
+      Data3: -974448471
+      Data4: -1199301340
+    Path: event:/WIP/Gorik/RainOnWater
+  - Guid:
       Data1: 988375670
       Data2: 1211676347
       Data3: -974448471
