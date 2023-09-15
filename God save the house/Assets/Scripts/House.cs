@@ -28,6 +28,8 @@ public class House : MonoBehaviour
     private EventInstance FireLevelSFX;
     private int CurrentRoom = -1;
 
+    private bool doOnce=true;
+
     private void Start()
     {
         if (ShouldBurn)
@@ -108,14 +110,17 @@ public class House : MonoBehaviour
             waterTimer += Time.deltaTime;
             if (waterTimer >= GameManager.Instance.SaveTime)
             {
+                if(doOnce)
+                {
+                    doOnce = false;
+                    AudioManager.Instance.StopEvent(RainOnSmth);
+                }
                 Rooms[CurrentRoom].EndBurning(true);
                 Flooding((waterTimer - GameManager.Instance.SaveTime) / GameManager.Instance.OverflowLimit);
             }
             
             if(!RainOnSmth.isValid() && State == HouseState.Burning)
                 RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnFire[(int)Position]);
-            else if(!RainOnSmth.isValid() && State == HouseState.Overflowing)
-                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnWater[(int)Position]);
         }
     }
 
@@ -142,6 +147,11 @@ public class House : MonoBehaviour
         }
         else
         {
+            if (!RainOnSmth.isValid())
+            {
+                Debug.Log("ooook");
+                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnWater[(int)Position]);
+            }
             Rooms.ForEach(R => R.Flood(LerpValue));
             FloodMaterial.SetFloat("_MaskIntensity", LerpValue);
         }
