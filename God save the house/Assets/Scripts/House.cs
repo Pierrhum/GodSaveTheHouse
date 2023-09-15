@@ -113,9 +113,9 @@ public class House : MonoBehaviour
             }
             
             if(!RainOnSmth.isValid() && State == HouseState.Burning)
-                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnFire);
+                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnFire[(int)Position]);
             else if(!RainOnSmth.isValid() && State == HouseState.Overflowing)
-                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnWater);
+                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnWater[(int)Position]);
         }
     }
 

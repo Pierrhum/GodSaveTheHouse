@@ -5,7 +5,7 @@
 			<value>House_Selected_C</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{e80644e7-3f78-40c9-80f8-9957edbebd6b}</destination>
@@ -93,7 +93,6 @@
 			<value>2.6593333333333335</value>
 		</property>
 		<relationship name="sounds">
-			<destination>{501af89e-e96a-460a-ba50-b385f3e8d383}</destination>
 			<destination>{fceecb37-f360-488c-856c-45c8e3a99162}</destination>
 		</relationship>
 	</object>
@@ -121,11 +120,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{7a121e07-efd1-4272-a139-24539d87696a}" />
 	<object class="MixerBusFader" id="{46d02395-24ca-4031-924f-3acbf916df1b}" />
-	<object class="SingleSound" id="{501af89e-e96a-460a-ba50-b385f3e8d383}">
-		<relationship name="audioFile">
-			<destination>{a5aa4571-dc9f-42d4-86e4-e153a24d9962}</destination>
-		</relationship>
-	</object>
 	<object class="SingleSound" id="{fceecb37-f360-488c-856c-45c8e3a99162}">
 		<relationship name="audioFile">
 			<destination>{dee04655-dddd-433e-aba0-a40bf54010ef}</destination>

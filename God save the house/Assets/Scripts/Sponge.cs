@@ -10,8 +10,8 @@ public class Sponge : MonoBehaviour
     [Header("Components")]
     public static House TargetHouse;
     public SpriteRenderer CloudSprite;
-    public Collider RainCollider;
     public ParticleSystem RainVFX;
+    private Animator animator;
 
     [Header("Parameters")] 
     public List<Sprite> Sprites;
@@ -34,12 +34,14 @@ public class Sponge : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         WaterCapacity = GameManager.Instance.StartWaterCapacity;
         
         float Lerp = GetLerpWaterCapacity();
         if (Lerp > .6f) SetSprite(0);
         else if (Lerp > .3f) SetSprite(1);
         else SetSprite(2);
+        animator.SetFloat("Fill", (1 - Lerp));
     }
 
     public void Move(Vector3 DeltaPos)
@@ -52,8 +54,6 @@ public class Sponge : MonoBehaviour
     }
     public void SetRain(bool activate)
     {
-        RainCollider.enabled = activate && WaterCapacity > 0;
-        
         if (activate && !isRaining)
         {
             if (WaterCapacity > 0)
@@ -115,6 +115,7 @@ public class Sponge : MonoBehaviour
             else SetSprite(2);
             
             AudioManager.Instance.SetGlobalParameter("RainIntensity", (1 - Lerp));
+            animator.SetFloat("Fill", (1 - Lerp));
             var emission = RainVFX.emission;
             emission.rateOverTime = Mathf.Lerp(0, 100, Lerp);
             
@@ -136,6 +137,7 @@ public class Sponge : MonoBehaviour
             else SetSprite(2);
             
             AudioManager.Instance.SetGlobalParameter("FillCloud", Lerp);
+            animator.SetFloat("Fill", (1 - Lerp));
             
             yield return new WaitForSeconds(Time.deltaTime);
         }

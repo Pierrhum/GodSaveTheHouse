@@ -114,19 +114,43 @@ MonoBehaviour:
       Data4: -1554732576
     Path: event:/WIP/Quentin/HouseSafe
   RainOnFire:
-    Guid:
-      Data1: -294082580
-      Data2: 1292770723
-      Data3: -1891036490
-      Data4: -289279467
-    Path: event:/WIP/Gorik/RainOnFire
+  - Guid:
+      Data1: 1613220248
+      Data2: 1232219790
+      Data3: 2105884595
+      Data4: -1303343585
+    Path: event:/WIP/Gorik/HouseL/House_RainOnFire_L
+  - Guid:
+      Data1: -968183451
+      Data2: 1218725086
+      Data3: -656835411
+      Data4: 984921848
+    Path: event:/WIP/Gorik/HouseC/House_RainOnFire_C
+  - Guid:
+      Data1: 308861313
+      Data2: 1157161625
+      Data3: 1422428338
+      Data4: 1384422252
+    Path: event:/WIP/Gorik/HouseR/House_RainOnFire_R
   RainOnWater:
-    Guid:
-      Data1: 988375670
-      Data2: 1211676347
-      Data3: -974448471
-      Data4: -1199301340
-    Path: event:/WIP/Gorik/RainOnWater
+  - Guid:
+      Data1: -21135770
+      Data2: 1174638328
+      Data3: -459023997
+      Data4: -1522746163
+    Path: event:/WIP/Gorik/HouseL/House_RainOnWater_L
+  - Guid:
+      Data1: 1093076531
+      Data2: 1134263201
+      Data3: 829408419
+      Data4: 1123746931
+    Path: event:/WIP/Gorik/HouseC/House_RainOnWater_C
+  - Guid:
+      Data1: 319505791
+      Data2: 1291862866
+      Data3: -1130235985
+      Data4: -1679032193
+    Path: event:/WIP/Gorik/HouseR/House_RainOnWater_R
   SpongePressed:
     Guid:
       Data1: -1405115951

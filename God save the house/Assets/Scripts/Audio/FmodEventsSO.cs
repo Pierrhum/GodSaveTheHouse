@@ -22,8 +22,8 @@ public class FmodEventsSO : ScriptableObject
     public List<EventReference> HouseBurning;
     public List<EventReference> HouseSelected;
     public EventReference HouseSafe;
-    public EventReference RainOnFire;
-    public EventReference RainOnWater;
+    public List<EventReference> RainOnFire;
+    public List<EventReference> RainOnWater;
 
     [Header("Sponge")]
     public EventReference SpongePressed;
