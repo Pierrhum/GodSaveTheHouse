@@ -51,8 +51,8 @@ Sensor_State current_sensor_state = START_SEND;
 
 const int timeDelayMsg = 100;
 const float minErrorMargin = 1.5;
-const float maxErrorMargin = 8;
-const int maxDistance = 100;
+const float maxErrorMargin = 19;
+const int maxDistance = 55;
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, maxDistance);
 void setup() {
   // put your setup code here, to run once:
@@ -157,9 +157,9 @@ void distanceSensorTest(){
   }
 */
 float newDistance=sonar.convert_cm(sonar.ping_median());
-if((newDistance > distance+ minErrorMargin )
-     || (newDistance < distance - minErrorMargin)
-     || distance == 0 || distance > 55){
+  if((newDistance > distance+ minErrorMargin && newDistance < distance + maxErrorMargin)
+     || (newDistance < distance - minErrorMargin && newDistance > distance - maxErrorMargin)
+     || distance == 0 || (distance > 55 && newDistance <= 55)){
       distance = newDistance;
      }
  

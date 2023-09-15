@@ -48,6 +48,18 @@ public class PlayerController : MonoBehaviour
        
 
         float LerpValue = (position - minDistance) / (maxDistance - minDistance);
+        if (LerpValue < 0.40)
+        {
+            LerpValue = 0;
+        }
+        else if (LerpValue >= 0.40 && LerpValue <= 0.60)
+        {
+            LerpValue = 0.45f;
+        }
+        else
+        {
+            LerpValue = 1;
+        }
         SetPlayerPosition(LerpValue);
     }
     public void Press(InputAction.CallbackContext context)

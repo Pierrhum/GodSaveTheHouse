@@ -12,14 +12,13 @@ public class ArduinoListener : MonoBehaviour
 
     public void OnMessageArrived(string msg)
     {
-        Debug.Log("Arrived: " + msg);
         ControllerValues values = new ControllerValues(msg);
         ArduinoDataReceived.Invoke(values);
     }
 
     public void OnConnectionEvent(bool success)
     {
-        Debug.Log(success ? "Device connected" : "Device disconnected");
+        //Debug.Log(success ? "Device connected" : "Device disconnected");
         _isDeviceConnected = success;
     }
 }

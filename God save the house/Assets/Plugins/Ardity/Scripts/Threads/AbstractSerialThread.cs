@@ -259,7 +259,7 @@ public abstract class AbstractSerialThread
                 }
                 else
                 {
-                    Debug.LogWarning("Queue is full. Dropping message: " + inputMessage);
+//                    Debug.LogWarning("Queue is full. Dropping message: " + inputMessage);
                 }
             }
         }

@@ -73,7 +73,15 @@ public class Sponge : MonoBehaviour
                 TargetHouse.isRainSFXPlaying = false;
             }
             RainVFX.Stop();
-            StopCoroutine(ConsumeCoroutine);
+            try
+            {
+                StopCoroutine(ConsumeCoroutine);
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Bug rain");
+            }
+            
             if (TargetHouse && TargetHouse.isSavedRange())
                 TargetHouse.State = HouseState.Saved;
         }

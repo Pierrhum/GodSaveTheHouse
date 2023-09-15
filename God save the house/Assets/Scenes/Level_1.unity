@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -388,7 +388,7 @@ PrefabInstance:
         type: 3}
       propertyPath: listener
       value: 
-      objectReference: {fileID: 1135706354}
+      objectReference: {fileID: 986516311}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f088f9f8dd649314c9b73016f1a5c5c5, type: 3}
 --- !u!1001 &159564506
@@ -473,6 +473,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightHouse
       objectReference: {fileID: 0}
+    - target: {fileID: 2925976878026556785, guid: f088f9f8dd649314c9b73016f1a5c5c5,
+        type: 3}
+      propertyPath: listener
+      value: 
+      objectReference: {fileID: 986516311}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 435be5bda0ed47d43811a3c7651f7d91, type: 3}
 --- !u!1001 &272206226
@@ -951,6 +956,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
+--- !u!114 &986516311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2111604184, guid: a65acf0cbf56b80419f74ebf0bc845f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1135706353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a97744e2832b64f9d2dd4ba19d0d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1135706353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1008,18 +1025,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
---- !u!114 &1135706354 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2111604184, guid: a65acf0cbf56b80419f74ebf0bc845f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1135706353}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a97744e2832b64f9d2dd4ba19d0d31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1518163732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fmodEvents: {fileID: 11400000, guid: fe83694f95681fe4291ae282b87c1daa, type: 2}
-  needDebug: 1
+  needDebug: 0
   pauseSnapshot:
     reference:
       Guid:
