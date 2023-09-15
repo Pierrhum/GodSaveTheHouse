@@ -272,9 +272,9 @@ MonoBehaviour:
   RainCollider: {fileID: 758809749}
   RainVFX: {fileID: 2107345709}
   Sprites:
-  - {fileID: 21300000, guid: 4049978cdaadbc94d93cda14852ccb2b, type: 3}
-  - {fileID: 21300000, guid: 1d58c1115365f444d85ba7b8560b6013, type: 3}
   - {fileID: 21300000, guid: 9c642ac188625f141b41e52f5e7203b6, type: 3}
+  - {fileID: 21300000, guid: 1d58c1115365f444d85ba7b8560b6013, type: 3}
+  - {fileID: 21300000, guid: 4049978cdaadbc94d93cda14852ccb2b, type: 3}
   WaterCapacity: 0
 --- !u!4 &79547371
 Transform:
@@ -1388,9 +1388,7 @@ MonoBehaviour:
   MinHouseToSave: 1
   LeftHouse: {fileID: 285610500}
   RightHouse: {fileID: 449686270}
-  FloodMaterial: {fileID: 0}
   BurningTime: 3
-  OverflowTime: 5
   OverflowLimit: 2
   SaveTime: 1
   FireParticles:
