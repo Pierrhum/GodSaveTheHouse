@@ -19,6 +19,14 @@ MonoBehaviour:
       Data3: 373830052
       Data4: 845716228
     Path: event:/WIP/Gorik/UI_Button
+  Victory:
+    reference:
+      Guid:
+        Data1: -1433915875
+        Data2: 1227873826
+        Data3: 1266147499
+        Data4: -1341645540
+      Path: event:/WIP/Quentin/MusicVictory
   Defeat:
     reference:
       Guid:
