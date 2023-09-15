@@ -1,6 +1,7 @@
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 [DefaultExecutionOrder(-1)]
 public class AudioManager : Singleton<AudioManager>
@@ -16,6 +17,11 @@ public class AudioManager : Singleton<AudioManager>
     {
         fmodEvents = _fmodEvents;
         SFX = RuntimeManager.GetBus("bus:/SFX");
+    }
+
+    public void StopEvents()
+    {
+        SFX.stopAllEvents(STOP_MODE.ALLOWFADEOUT);
     }
 
     public void GamePaused()
