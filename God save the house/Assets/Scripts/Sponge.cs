@@ -10,7 +10,6 @@ public class Sponge : MonoBehaviour
     [Header("Components")]
     public static House TargetHouse;
     public SpriteRenderer CloudSprite;
-    public Collider RainCollider;
     public ParticleSystem RainVFX;
 
     [Header("Parameters")] 
@@ -52,8 +51,6 @@ public class Sponge : MonoBehaviour
     }
     public void SetRain(bool activate)
     {
-        RainCollider.enabled = activate && WaterCapacity > 0;
-        
         if (activate && !isRaining)
         {
             if (WaterCapacity > 0)
