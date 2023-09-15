@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
       propertyPath: DelayBeforeBurning
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3039290988377270914, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
@@ -590,7 +590,7 @@ PrefabInstance:
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
       propertyPath: DelayBeforeBurning
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3039290988377270914, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
@@ -949,7 +949,7 @@ PrefabInstance:
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
       propertyPath: DelayBeforeBurning
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3039290988377270914, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   UI: {fileID: 272206227}
   MainMenuVisible: 1
   StartWaterCapacity: 1
-  MaxWaterCapacity: 3
+  MaxWaterCapacity: 5
   WaterRefill: 1
   MinHouseToSave: 3
   LeftHouse: {fileID: 285610500}

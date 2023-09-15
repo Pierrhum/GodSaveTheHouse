@@ -1382,8 +1382,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 272206227}
   MainMenuVisible: 1
-  StartWaterCapacity: 1
-  MaxWaterCapacity: 4
+  StartWaterCapacity: 2
+  MaxWaterCapacity: 5
   WaterRefill: 1
   MinHouseToSave: 3
   LeftHouse: {fileID: 285610500}

@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
       propertyPath: DelayBeforeBurning
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3039290988377270914, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
@@ -590,7 +590,7 @@ PrefabInstance:
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
       propertyPath: DelayBeforeBurning
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3039290988377270914, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
@@ -949,7 +949,7 @@ PrefabInstance:
     - target: {fileID: 3039290988377270913, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
       propertyPath: DelayBeforeBurning
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3039290988377270914, guid: 435be5bda0ed47d43811a3c7651f7d91,
         type: 3}
@@ -1382,15 +1382,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 272206227}
   MainMenuVisible: 1
-  StartWaterCapacity: 3
-  MaxWaterCapacity: 5
+  StartWaterCapacity: 0
+  MaxWaterCapacity: 1
   WaterRefill: 1
   MinHouseToSave: 3
   LeftHouse: {fileID: 285610500}
   RightHouse: {fileID: 449686270}
   FloodMaterial: {fileID: 0}
-  BurningTime: 3
-  OverflowLimit: 2
+  BurningTime: 1
+  OverflowLimit: 0.6
   SaveTime: 1
   FireParticles:
   - {fileID: 5453813337987338184, guid: 612b84f7f84ed744f978caf8d9e097bc, type: 3}
