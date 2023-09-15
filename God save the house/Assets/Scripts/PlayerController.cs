@@ -3,18 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public Sponge sponge;
     public static bool CanPlay = false;
-    [SerializeField] private GameCanvas gameCanvas;
     private Vector2 inputMovement;
     private float lerp;
     public const float maxDistance = 50f;
     public const float minDistance = 15f;
     private int buttonSelected = -1;
-    
+
+    public void OpenFirstLevel(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            SceneManager.LoadScene("Level_1");
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -101,16 +106,16 @@ public class PlayerController : MonoBehaviour
 
     public void SelectMenuButton(ControllerValues values)
     {
-        if (gameCanvas.GameOver.activeSelf)
+        if (GameManager.Instance.UI.GameOver.activeSelf)
         {
             if (values.HandPositionFromCaptor < ((maxDistance -minDistance) / 2f + minDistance) && buttonSelected != 1)
             {
-                gameCanvas.SetHoverRetryButtonGO();
+                GameManager.Instance.UI.SetHoverRetryButtonGO();
                 buttonSelected = 1;
             }
             else if (values.HandPositionFromCaptor > ((maxDistance -minDistance) / 2f + minDistance) && buttonSelected!= 2)
             {
-                gameCanvas.SetHoverQuitButtonGO();
+                GameManager.Instance.UI.SetHoverQuitButtonGO();
                 buttonSelected = 2;
             }
         }
@@ -118,17 +123,17 @@ public class PlayerController : MonoBehaviour
         {
             if (values.HandPositionFromCaptor < ((maxDistance -minDistance) / 3f + minDistance) && buttonSelected != 0)
             {
-                gameCanvas.SetHoverLevelButtonV();
+                GameManager.Instance.UI.SetHoverLevelButtonV();
                 buttonSelected = 0;
             }
             else if (values.HandPositionFromCaptor is > (((maxDistance -minDistance) / 3f) + minDistance) and < (((maxDistance -minDistance) / 3f)*2f + minDistance) && buttonSelected!= 1)
             {
-                gameCanvas.SetHoverRetryButtonV();
+                GameManager.Instance.UI.SetHoverRetryButtonV();
                 buttonSelected = 1;
             }
             else if (values.HandPositionFromCaptor > (((maxDistance -minDistance) / 3f)*2f + minDistance) && buttonSelected!= 2)
             {
-                gameCanvas.SetHoverQuitButtonV();
+                GameManager.Instance.UI.SetHoverQuitButtonV();
                 buttonSelected = 2;
             }
         }
@@ -138,13 +143,13 @@ public class PlayerController : MonoBehaviour
             switch (buttonSelected)
             {
                 case 0:
-                    gameCanvas.NextLevel();
+                    GameManager.Instance.UI.NextLevel();
                     break;
                 case 1:
-                    gameCanvas.Retry();
+                    GameManager.Instance.UI.Retry();
                     break;
                 case 2:
-                    gameCanvas.Quit();
+                    GameManager.Instance.UI.Quit();
                     break;
                 default:
                     Debug.Log("should not happen");
