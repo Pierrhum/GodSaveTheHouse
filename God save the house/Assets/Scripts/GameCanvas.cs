@@ -47,4 +47,9 @@ public class GameCanvas : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public void ButtonHover()
+    {
+        AudioManager.Instance.PlayOnShotEvent(AudioManager.fmodEvents.UIButton);
+    }
 }

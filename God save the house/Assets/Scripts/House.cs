@@ -23,6 +23,7 @@ public class House : MonoBehaviour
     
     [System.NonSerialized] public HouseState State = HouseState.Burning;
     [System.NonSerialized] public  EventInstance RainOnSmth;
+    private Material FloodMaterial;
     private EventInstance BurningSFX;
     private EventInstance FireLevelSFX;
     private int CurrentRoom = -1;
@@ -31,6 +32,7 @@ public class House : MonoBehaviour
     {
         if (ShouldBurn)
         {
+            FloodMaterial = GetComponent<SpriteRenderer>().material;
             Rooms.ForEach(R => R.Position = Position == HousePosition.L ? "L" : Position == HousePosition.R ? "R" : "C");
             GameManager.Instance.Houses.Add(this);
         }
@@ -131,18 +133,20 @@ public class House : MonoBehaviour
     
     public void Flooding(float LerpValue)
     {
-        Debug.Log(LerpValue.ToString());
         if (State == HouseState.Overflowing)
         {
             if(LerpValue >= 1f) 
             {
                 State = HouseState.Drown;
-                Debug.Log("DROWN");
                 GameManager.Instance.HouseEnd(false);
-                GameManager.Instance.FloodMaterial.SetFloat("MaskIntensity", 1f);
+                Rooms.ForEach(R => R.Flood(1f));
+                FloodMaterial.SetFloat("MaskIntensity", 1f);
             }
             else
-                GameManager.Instance.FloodMaterial.SetFloat("MaskIntensity", LerpValue);
+            {
+                FloodMaterial.SetFloat("MaskIntensity", LerpValue);
+                Rooms.ForEach(R => R.Flood(LerpValue));
+            }
         }
     }
 }

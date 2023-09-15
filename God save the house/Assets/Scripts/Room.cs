@@ -12,6 +12,7 @@ public class Room : MonoBehaviour
     [System.NonSerialized] public string Position;
     private ParticleSystem Smoke;
     private GameObject Fire;
+    private Material FloodMaterial;
 
     private bool doOnceHouseSafe = true;
 
@@ -24,6 +25,7 @@ public class Room : MonoBehaviour
         Fire.SetActive(false);
         Smoke = Smoke_go.GetComponentInChildren<ParticleSystem>();
         BurnSprite.SetActive(false);
+        FloodMaterial = BurnSprite.GetComponent<SpriteRenderer>().material;
     }
 
     public void EndBurning(bool Saved)
@@ -46,5 +48,11 @@ public class Room : MonoBehaviour
         Smoke.Play();
         EventInstance sfx = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.Explosion);
         sfx.setParameterByNameWithLabel("HousePosition", Position);
+    }
+
+    public void Flood(float LerpValue)
+    {
+        FloodMaterial.SetFloat("MaskIntensity", LerpValue);
+        Debug.Log("Lerp : " + FloodMaterial.GetFloat("MaskIntensity"));
     }
 }

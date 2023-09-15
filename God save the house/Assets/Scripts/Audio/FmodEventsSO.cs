@@ -6,8 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FMODEvents", menuName = "ScriptableObjects/FMODEvents", order = 2)]
 public class FmodEventsSO : ScriptableObject
 {
+    [Header("UI")]
+    public EventReference UIButton;
+    
     [Header("Musics")]
-    public FmodEventRefAndInstance test1;
+    public FmodEventRefAndInstance Defeat;
 
     [Header("Ambiances")]
     public EventReference Ambiance;
@@ -17,7 +20,6 @@ public class FmodEventsSO : ScriptableObject
     public List<EventReference> FireLevel;
     public List<EventReference> HouseBurning;
     public List<EventReference> HouseSelected;
-    public EventReference HouseBurnt;
     public EventReference HouseSafe;
     public EventReference RainOnFire;
     public EventReference RainOnWater;
