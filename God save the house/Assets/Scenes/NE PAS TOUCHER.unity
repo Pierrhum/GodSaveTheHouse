@@ -752,6 +752,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7839391588763940925, guid: 9d3e61c4b0c552047972f633f383272b,
+        type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839391588763940925, guid: 9d3e61c4b0c552047972f633f383272b,
+        type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c446e8a72045e6444b47b9869799c646,
+        type: 3}
+    - target: {fileID: 7839391588763940925, guid: 9d3e61c4b0c552047972f633f383272b,
+        type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5676b362fb75099488ef7b361db54d2c,
+        type: 3}
+    - target: {fileID: 7839391588763940925, guid: 9d3e61c4b0c552047972f633f383272b,
+        type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5676b362fb75099488ef7b361db54d2c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d3e61c4b0c552047972f633f383272b, type: 3}
 --- !u!114 &272206227 stripped
@@ -1319,9 +1342,7 @@ MonoBehaviour:
   MinHouseToSave: 1
   LeftHouse: {fileID: 333437373}
   RightHouse: {fileID: 1241335439}
-  FloodMaterial: {fileID: 2100000, guid: a0fbe749bf8380d4fb35b9d9ad9bc29b, type: 2}
   BurningTime: 1
-  OverflowTime: 5
   OverflowLimit: 2
   SaveTime: 1
   FireParticles:
