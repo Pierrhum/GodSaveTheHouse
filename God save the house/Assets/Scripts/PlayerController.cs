@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour
 {
     public Sponge sponge;
     public static bool CanPlay = false;
-
+    [SerializeField] private GameCanvas gameCanvas;
     private Vector2 inputMovement;
     private float lerp;
-    private const float maxDistance = 50f;
-    private const float minDistance = 15f;
+    public const float maxDistance = 50f;
+    public const float minDistance = 15f;
+    private int buttonSelected = -1;
     
 
     public void Move(InputAction.CallbackContext context)
@@ -96,5 +97,61 @@ public class PlayerController : MonoBehaviour
             SetPlayerPosition(lerp);
         }
 
+    }
+
+    public void SelectMenuButton(ControllerValues values)
+    {
+        if (gameCanvas.GameOver.activeSelf)
+        {
+            if (values.HandPositionFromCaptor < ((maxDistance -minDistance) / 2f + minDistance) && buttonSelected != 1)
+            {
+                gameCanvas.SetHoverRetryButtonGO();
+                buttonSelected = 1;
+            }
+            else if (values.HandPositionFromCaptor > ((maxDistance -minDistance) / 2f + minDistance) && buttonSelected!= 2)
+            {
+                gameCanvas.SetHoverQuitButtonGO();
+                buttonSelected = 2;
+            }
+        }
+        else
+        {
+            if (values.HandPositionFromCaptor < ((maxDistance -minDistance) / 3f + minDistance) && buttonSelected != 0)
+            {
+                gameCanvas.SetHoverLevelButtonV();
+                buttonSelected = 0;
+            }
+            else if (values.HandPositionFromCaptor is > (((maxDistance -minDistance) / 3f) + minDistance) and < (((maxDistance -minDistance) / 3f)*2f + minDistance) && buttonSelected!= 1)
+            {
+                gameCanvas.SetHoverRetryButtonV();
+                buttonSelected = 1;
+            }
+            else if (values.HandPositionFromCaptor > (((maxDistance -minDistance) / 3f)*2f + minDistance) && buttonSelected!= 2)
+            {
+                gameCanvas.SetHoverQuitButtonV();
+                buttonSelected = 2;
+            }
+        }
+    
+        if (values.PressureButtonIsPressed)
+        {
+            switch (buttonSelected)
+            {
+                case 0:
+                    gameCanvas.NextLevel();
+                    break;
+                case 1:
+                    gameCanvas.Retry();
+                    break;
+                case 2:
+                    gameCanvas.Quit();
+                    break;
+                default:
+                    Debug.Log("should not happen");
+                    break;
+            }
+            buttonSelected = -1;
+        }
+      
     }
 }

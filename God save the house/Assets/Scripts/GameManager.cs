@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("UI")] 
     public GameCanvas UI;
     public bool MainMenuVisible = false;
+    public bool EndMenuVisible = false;
 
     [Header("Sponge")] 
     public float StartWaterCapacity = 3f;

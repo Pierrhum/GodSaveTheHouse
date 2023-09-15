@@ -12,7 +12,9 @@ const int pressureZero = 102.4; //analog reading of pressure transducer at 0psi
 const int pressureMax = 921.6; //analog reading of pressure transducer at 30psi
 const int pressuretransducermaxPSI = 30; //psi value of transducer being used
 
-float distance;
+float distance = 0;
+float totalDistance = 0;
+int countNbDistance = 0;
 float duration;
 
 
@@ -31,6 +33,8 @@ unsigned long time_micro_since_previous_state = 0;
 float pressureBtnValue = 0;
 bool pressureBtnIsDown = false;
 
+
+
 float lakeBtnValue = 0;
 bool lakeBtnIsDown = false;
 bool lakeBtnPressed = false;
@@ -45,7 +49,9 @@ enum Sensor_State {
 }; 
 Sensor_State current_sensor_state = START_SEND;
 
-
+const int timeDelayMsg = 100;
+const float minErrorMargin = 1.5;
+const float maxErrorMargin = 5;
 
 void setup() {
   // put your setup code here, to run once:
@@ -118,7 +124,14 @@ void distanceSensorTest(){
   if( current_sensor_state == START_RECEIVE and isDelayMicroTimePassed()){
     digitalWrite(TRIGGER_PIN, LOW);
     duration=pulseIn(ECHO_PIN, HIGH);
-    distance=(duration*0.034)/2;
+    float newDistance=(duration*0.034)/2;
+    if((newDistance > distance+ minErrorMargin && newDistance < distance + maxErrorMargin)
+     || (newDistance < distance - minErrorMargin && newDistance > distance - maxErrorMargin)
+     || distance == 0 || distance > 65){
+      distance = newDistance;
+      //totalDistance+=distance;
+      //countNbDistance +=1;
+    }
   
    /* if(distance > 15 and distance < 25){
       triggerLed(LED_1_PIN);
@@ -132,7 +145,7 @@ void distanceSensorTest(){
     turnOffLed();*/
     current_sensor_state = STOP_RECEIVE;
     time_since_previous_state = current_time;
-    duration_for_next_state = 100;
+    duration_for_next_state = 50;
   }
   
  
@@ -166,9 +179,12 @@ void testPressureBtn() {
 }
 
 void sendMsg(){
-  if(last_time_msg_sent + 100 < current_time){
+  if(last_time_msg_sent + timeDelayMsg < current_time){
     int pressureBtnPress = pressureBtnIsDown?1:0;
     int lakeBtnPress = lakeBtnIsDown?1:0;
+    /*float avgDistance = totalDistance / countNbDistance;
+    totalDistance = 0;
+    countNbDistance = 0;*/
     String msg = (String)distance +";"+ (String)pressureBtnValue+";"+ (String)pressureBtnPress +";" +(String)lakeBtnPress + ";";
     Serial.println(msg);
     //Serial.println(val);
