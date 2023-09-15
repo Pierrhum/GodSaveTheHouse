@@ -1,4 +1,4 @@
-
+#include <NewPing.h>
 #define BUZZER_PIN 3
 #define TRIGGER_PIN 13
 #define ECHO_PIN 12
@@ -51,8 +51,9 @@ Sensor_State current_sensor_state = START_SEND;
 
 const int timeDelayMsg = 100;
 const float minErrorMargin = 1.5;
-const float maxErrorMargin = 5;
-
+const float maxErrorMargin = 8;
+const int maxDistance = 100;
+NewPing sonar(TRIGGER_PIN, ECHO_PIN, maxDistance);
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -66,6 +67,7 @@ void setup() {
    //Init btn
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(PRESSURE_PIN, INPUT_PULLUP);
+
   //pressureBtnPrevValue = analogRead(BUTTON_PIN);
   //pressureBtnValue = analogRead(BUTTON_PIN);
 
@@ -103,7 +105,7 @@ void testLakeButton(){
 void distanceSensorTest(){
 
   // put your main code here, to run repeatedly:
-  if(current_sensor_state == START_SEND){
+  /*if(current_sensor_state == START_SEND){
     digitalWrite(TRIGGER_PIN, LOW);
     
    // Wait for 2 microseconds
@@ -131,7 +133,7 @@ void distanceSensorTest(){
       distance = newDistance;
       //totalDistance+=distance;
       //countNbDistance +=1;
-    }
+    }*/
   
    /* if(distance > 15 and distance < 25){
       triggerLed(LED_1_PIN);
@@ -143,7 +145,7 @@ void distanceSensorTest(){
       triggerLed(LED_3_PIN);
     }
     turnOffLed();*/
-    current_sensor_state = STOP_RECEIVE;
+    /*current_sensor_state = STOP_RECEIVE;
     time_since_previous_state = current_time;
     duration_for_next_state = 50;
   }
@@ -153,7 +155,14 @@ void distanceSensorTest(){
   {
     current_sensor_state = START_SEND;
   }
-
+*/
+float newDistance=sonar.convert_cm(sonar.ping_median());
+if((newDistance > distance+ minErrorMargin && newDistance < distance + maxErrorMargin)
+     || (newDistance < distance - minErrorMargin && newDistance > distance - maxErrorMargin)
+     || distance == 0 || distance > 65){
+      distance = newDistance;
+     }
+ 
 }
 
 bool isDelayTimePassed(){
@@ -173,7 +182,7 @@ void testPressureBtn() {
   pressureBtnValue = analogRead(PRESSURE_PIN);
   pressureBtnValue = ((pressureBtnValue-pressureZero)*pressuretransducermaxPSI)/(pressureMax-pressureZero); //conversion equation to convert analog reading to psi
   pressureBtnIsDown= false;
-  if(pressureBtnValue > 0.2){
+  if(pressureBtnValue > 0.5){
     pressureBtnIsDown = true;
   }
 }
