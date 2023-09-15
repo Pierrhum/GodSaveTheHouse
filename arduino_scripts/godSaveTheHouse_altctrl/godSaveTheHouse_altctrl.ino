@@ -145,7 +145,7 @@ void distanceSensorTest(){
     turnOffLed();*/
     current_sensor_state = STOP_RECEIVE;
     time_since_previous_state = current_time;
-    duration_for_next_state = 0;
+    duration_for_next_state = 50;
   }
   
  

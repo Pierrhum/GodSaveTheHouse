@@ -9,12 +9,13 @@ using UnityEngine.UI;
 public class GameCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject Victory;
-    [SerializeField] private GameObject GameOver;
+    [SerializeField] public GameObject GameOver;
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private Button buttonRetryGO;
     [SerializeField] private Button buttonRetryV;
     [SerializeField] private Button buttonQuitGO;
     [SerializeField] private Button buttonQuitV;
+    [SerializeField] private Button buttonLevelV;
     private void Start()
     {
         Victory.SetActive(false);
@@ -57,27 +58,33 @@ public class GameCanvas : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void SetHoverRetryButton()
+    public void SetHoverRetryButtonGO()
     {
-        if (GameOver.activeSelf)
-        {
-            buttonRetryGO.Select();
-        }
-        else
-        {
-            buttonRetryV.Select();
-        }
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
+        buttonRetryGO.Select();
+        
+       
     }
 
-    public void SetHoverQuitButton()
+    public void SetHoverRetryButtonV()
     {
-        if (GameOver.activeSelf)
-        {
-            buttonQuitGO.Select();
-        }
-        else
-        {
-            buttonQuitV.Select();
-        }
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
+        buttonRetryV.Select();
+    }
+
+    public void SetHoverQuitButtonGO()
+    {
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
+        buttonQuitGO.Select();
+    }
+    public void SetHoverQuitButtonV()
+    {
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
+        buttonQuitV.Select();
+    }
+    public void SetHoverLevelButtonV()
+    {
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
+        buttonLevelV.Select();
     }
 }

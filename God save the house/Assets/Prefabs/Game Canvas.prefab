@@ -539,6 +539,11 @@ MonoBehaviour:
   Victory: {fileID: 7839391587251094247}
   GameOver: {fileID: 7839391588707807510}
   MainMenu: {fileID: 7639940173746022708}
+  buttonRetryGO: {fileID: 7839391587541194003}
+  buttonRetryV: {fileID: 7839391587192224047}
+  buttonQuitGO: {fileID: 7839391588763940925}
+  buttonQuitV: {fileID: 7839391588148166634}
+  buttonLevelV: {fileID: 7647942884067247808}
 --- !u!223 &7839391587220558490
 Canvas:
   m_ObjectHideFlags: 0
