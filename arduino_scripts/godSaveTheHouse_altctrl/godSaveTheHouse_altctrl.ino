@@ -157,9 +157,9 @@ void distanceSensorTest(){
   }
 */
 float newDistance=sonar.convert_cm(sonar.ping_median());
-if((newDistance > distance+ minErrorMargin && newDistance < distance + maxErrorMargin)
-     || (newDistance < distance - minErrorMargin && newDistance > distance - maxErrorMargin)
-     || distance == 0 || distance > 65){
+if((newDistance > distance+ minErrorMargin )
+     || (newDistance < distance - minErrorMargin)
+     || distance == 0 || distance > 55){
       distance = newDistance;
      }
  
