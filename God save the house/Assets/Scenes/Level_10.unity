@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 79547371}
   - component: {fileID: 79547370}
   - component: {fileID: 79547372}
+  - component: {fileID: 79547373}
   m_Layer: 0
   m_Name: Sponge
   m_TagString: Untagged
@@ -272,9 +273,9 @@ MonoBehaviour:
   RainCollider: {fileID: 758809749}
   RainVFX: {fileID: 2107345709}
   Sprites:
-  - {fileID: 21300000, guid: 4049978cdaadbc94d93cda14852ccb2b, type: 3}
-  - {fileID: 21300000, guid: 1d58c1115365f444d85ba7b8560b6013, type: 3}
   - {fileID: 21300000, guid: 9c642ac188625f141b41e52f5e7203b6, type: 3}
+  - {fileID: 21300000, guid: 1d58c1115365f444d85ba7b8560b6013, type: 3}
+  - {fileID: 21300000, guid: 4049978cdaadbc94d93cda14852ccb2b, type: 3}
   WaterCapacity: 0
 --- !u!4 &79547371
 Transform:
@@ -325,6 +326,26 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!95 &79547373
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79547369}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: acc04fbc00b9d974d96536bec268e448, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &85941275
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sponge: {fileID: 79547370}
+  gameCanvas: {fileID: 0}
 --- !u!4 &85941278
 Transform:
   m_ObjectHideFlags: 0
@@ -669,7 +691,7 @@ PrefabInstance:
     - target: {fileID: 7839391587220558487, guid: 9d3e61c4b0c552047972f633f383272b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7839391587220558491, guid: 9d3e61c4b0c552047972f633f383272b,
         type: 3}
@@ -1382,6 +1404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 272206227}
   MainMenuVisible: 1
+  EndMenuVisible: 0
   StartWaterCapacity: 1
   MaxWaterCapacity: 2
   WaterRefill: 1
