@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 937779288020705392}
   - component: {fileID: 937779288020705395}
   - component: {fileID: 937779288020705394}
+  - component: {fileID: 2925976878026556785}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -93,7 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sponge: {fileID: 937779288043943812}
-  gameCanvas: {fileID: 0}
 --- !u!114 &937779288020705394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +213,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2925976878026556785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937779288020705397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9794caba8b2f342aae29a8d165beeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 937779288020705395}
+  listener: {fileID: 0}
 --- !u!1 &937779288043943815
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,9 +279,9 @@ MonoBehaviour:
   CloudSprite: {fileID: 937779288399091907}
   RainVFX: {fileID: 5042159835315808445}
   Sprites:
-  - {fileID: 21300000, guid: 9c642ac188625f141b41e52f5e7203b6, type: 3}
-  - {fileID: 21300000, guid: 1d58c1115365f444d85ba7b8560b6013, type: 3}
   - {fileID: 21300000, guid: 4049978cdaadbc94d93cda14852ccb2b, type: 3}
+  - {fileID: 21300000, guid: 1d58c1115365f444d85ba7b8560b6013, type: 3}
+  - {fileID: 21300000, guid: 9c642ac188625f141b41e52f5e7203b6, type: 3}
   WaterCapacity: 0
 --- !u!114 &937779288043943810
 MonoBehaviour:
