@@ -1388,8 +1388,7 @@ MonoBehaviour:
   MinHouseToSave: 3
   LeftHouse: {fileID: 285610500}
   RightHouse: {fileID: 449686270}
-  FloodMaterial: {fileID: 0}
-  BurningTime: 1
+  BurningTime: 2.5
   OverflowLimit: 0.6
   SaveTime: 1
   FireParticles:
