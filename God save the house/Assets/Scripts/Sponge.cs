@@ -73,17 +73,13 @@ public class Sponge : MonoBehaviour
                 TargetHouse.isRainSFXPlaying = false;
             }
             RainVFX.Stop();
-            try
-            {
-                StopCoroutine(ConsumeCoroutine);
-            }
-            catch (Exception e)
-            {
-                Debug.Log("Bug rain");
-            }
+            StopCoroutine(ConsumeCoroutine);
             
             if (TargetHouse && TargetHouse.isSavedRange())
+            {
                 TargetHouse.State = HouseState.Saved;
+                GameManager.Instance.HouseEnd(true);
+            }
         }
         isRaining = activate && WaterCapacity > 0;    
     }

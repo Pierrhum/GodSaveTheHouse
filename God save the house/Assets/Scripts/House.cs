@@ -138,7 +138,11 @@ public class House : MonoBehaviour
         {
             if (waterTimer <= 0)
                 if (isOverflowedRange()) State = HouseState.Overflowing;
-                else State = HouseState.Saved;
+                else 
+                {
+                    State = HouseState.Saved;
+                    GameManager.Instance.HouseEnd(true);
+                }
             Sponge.TargetHouse = null;
             AudioManager.Instance.StopEvent(RainOnSmth);
             isRainSFXPlaying = false;
