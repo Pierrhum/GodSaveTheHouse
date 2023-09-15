@@ -128,6 +128,9 @@
 		<property name="length">
 			<value>15.824166666666667</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{9a43bf3f-c58c-43f8-8198-8f0e9085994c}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{fe62b1bc-7834-4636-a54b-fde756c3c368}</destination>
 		</relationship>
@@ -222,6 +225,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{962d70e4-41b4-4d9f-9d2a-81e3d48e448d}" />
 	<object class="MixerBusFader" id="{a3482780-e1d3-4091-af3b-ece8eb4516c5}" />
+	<object class="RandomizerModulator" id="{9a43bf3f-c58c-43f8-8198-8f0e9085994c}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>startOffset</value>
+		</property>
+		<property name="amount">
+			<value>41</value>
+		</property>
+	</object>
 	<object class="TransitionSourceFadeOutCurve" id="{54fcc914-54cd-4698-82a3-81c636996d38}">
 		<relationship name="startPoint">
 			<destination>{b96fd923-da8f-44d7-93d3-e3374bf55419}</destination>
@@ -248,6 +259,9 @@
 		<property name="nameOfPropertyBeingAutomated">
 			<value>volume</value>
 		</property>
+		<relationship name="automationCurves">
+			<destination>{f90dee21-01c9-43ca-bdfd-d4e1e6cc9d53}</destination>
+		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{9c7b0bbb-9650-4774-9bcd-4d869e384e53}">
 		<relationship name="effects">
@@ -312,6 +326,11 @@
 		<property name="value">
 			<value>1</value>
 		</property>
+	</object>
+	<object class="AutomationCurve" id="{f90dee21-01c9-43ca-bdfd-d4e1e6cc9d53}">
+		<relationship name="parameter">
+			<destination>{a532e07b-f47b-4140-aea2-5056af9b2299}</destination>
+		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{6bcdb315-38e1-42a7-b86b-c495cd17dcca}" />
 </objects>
