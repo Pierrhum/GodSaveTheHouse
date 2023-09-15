@@ -113,7 +113,10 @@ public class Sponge : MonoBehaviour
             if (Lerp > .6f) SetSprite(0);
             else if (Lerp > .3f) SetSprite(1);
             else SetSprite(2);
+            
             AudioManager.Instance.SetGlobalParameter("RainIntensity", (1 - Lerp));
+            var emission = RainVFX.emission;
+            emission.rateOverTime = Mathf.Lerp(0, 100, Lerp);
             
             yield return new WaitForSeconds(Time.deltaTime);
         }
@@ -131,6 +134,8 @@ public class Sponge : MonoBehaviour
             if (Lerp > .6f) SetSprite(0);
             else if (Lerp > .3f) SetSprite(1);
             else SetSprite(2);
+            
+            AudioManager.Instance.SetGlobalParameter("FillCloud", Lerp);
             
             yield return new WaitForSeconds(Time.deltaTime);
         }
