@@ -29,6 +29,7 @@ public class House : MonoBehaviour
     private int CurrentRoom = -1;
 
     private bool doOnce=true;
+    [System.NonSerialized] public bool isRainSFXPlaying=false;
 
     private void Start()
     {
@@ -107,20 +108,27 @@ public class House : MonoBehaviour
         
         if (Sponge.isRaining && CurrentRoom >= 0)
         {
+            if(!isRainSFXPlaying)
+            {
+                if(State == HouseState.Burning)
+                    RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnFire[(int)Position]);
+                else
+                    RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnWater[(int)Position]);
+                isRainSFXPlaying = true;
+            }
             waterTimer += Time.deltaTime;
             if (waterTimer >= GameManager.Instance.SaveTime)
             {
                 if(doOnce)
                 {
                     doOnce = false;
+                    State = HouseState.Overflowing;
+                    isRainSFXPlaying = false;
                     AudioManager.Instance.StopEvent(RainOnSmth);
                 }
                 Rooms[CurrentRoom].EndBurning(true);
                 Flooding((waterTimer - GameManager.Instance.SaveTime) / GameManager.Instance.OverflowLimit);
             }
-            
-            if(!RainOnSmth.isValid() && State == HouseState.Burning)
-                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnFire[(int)Position]);
         }
     }
 
@@ -133,6 +141,7 @@ public class House : MonoBehaviour
                 else State = HouseState.Saved;
             Sponge.TargetHouse = null;
             AudioManager.Instance.StopEvent(RainOnSmth);
+            isRainSFXPlaying = false;
         }
     }
     
@@ -147,11 +156,6 @@ public class House : MonoBehaviour
         }
         else
         {
-            if (!RainOnSmth.isValid())
-            {
-                Debug.Log("ooook");
-                RainOnSmth = AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.RainOnWater[(int)Position]);
-            }
             Rooms.ForEach(R => R.Flood(LerpValue));
             FloodMaterial.SetFloat("_MaskIntensity", LerpValue);
         }

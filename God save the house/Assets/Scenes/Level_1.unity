@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fmodEvents: {fileID: 11400000, guid: fe83694f95681fe4291ae282b87c1daa, type: 2}
-  needDebug: 0
+  needDebug: 1
   pauseSnapshot:
     reference:
       Guid:
