@@ -138,12 +138,12 @@ public class House : MonoBehaviour
             State = HouseState.Drown;
             GameManager.Instance.HouseEnd(false);
             Rooms.ForEach(R => R.Flood(1f));
-            FloodMaterial.SetFloat("MaskIntensity", 1f);
+            FloodMaterial.SetFloat("_MaskIntensity", 1f);
         }
         else
         {
             Rooms.ForEach(R => R.Flood(LerpValue));
-            FloodMaterial.SetFloat("MaskIntensity", LerpValue);
+            FloodMaterial.SetFloat("_MaskIntensity", LerpValue);
         }
     }
 }

@@ -52,6 +52,6 @@ public class Room : MonoBehaviour
 
     public void Flood(float LerpValue)
     {
-        FloodMaterial.SetFloat("MaskIntensity", LerpValue);
+        FloodMaterial.SetFloat("_MaskIntensity", LerpValue);
     }
 }
