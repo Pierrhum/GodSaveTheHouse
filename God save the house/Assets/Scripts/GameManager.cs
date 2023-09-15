@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int MinHouseToSave = 1;
     [SerializeField] private House LeftHouse;
     [SerializeField] private House RightHouse;
-    public Material FloodMaterial;
     public float BurningTime = 3f;
     public float OverflowLimit = 2f;
     public float SaveTime = 2f;
@@ -106,6 +105,7 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
+        AudioManager.Instance.PlayEvent(AudioManager.fmodEvents.Defeat);
         UI.GameOverScreen();
     }
 

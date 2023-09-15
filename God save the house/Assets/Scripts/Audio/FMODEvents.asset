@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96abc6ae016bc9d40b22bce03948c474, type: 3}
   m_Name: FMODEvents
   m_EditorClassIdentifier: 
-  test1:
+  UIButton:
+    Guid:
+      Data1: -151722719
+      Data2: 1144727620
+      Data3: 373830052
+      Data4: 845716228
+    Path: event:/WIP/Gorik/UI_Button
+  Defeat:
     reference:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: -603125371
+        Data2: 1340629846
+        Data3: 911065226
+        Data4: 302621225
+      Path: event:/WIP/Quentin/MusicDefeat
   Ambiance:
     Guid:
       Data1: 483571366
@@ -91,13 +98,6 @@ MonoBehaviour:
       Data3: -827734383
       Data4: 1375466883
     Path: event:/WIP/Gorik/HouseR/House_Selected_R
-  HouseBurnt:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
   HouseSafe:
     Guid:
       Data1: -70125419
