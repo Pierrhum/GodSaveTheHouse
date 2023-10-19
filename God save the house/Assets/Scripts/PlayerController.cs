@@ -48,11 +48,11 @@ public class PlayerController : MonoBehaviour
        
 
         float LerpValue = (position - minDistance) / (maxDistance - minDistance);
-        if (LerpValue < 0.40)
+        if (LerpValue < 0.33)
         {
             LerpValue = 0;
         }
-        else if (LerpValue >= 0.40 && LerpValue <= 0.60)
+        else if (LerpValue >= 0.33 && LerpValue <= 0.66)
         {
             LerpValue = 0.45f;
         }

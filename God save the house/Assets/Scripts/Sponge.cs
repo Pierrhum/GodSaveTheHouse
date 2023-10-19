@@ -73,7 +73,8 @@ public class Sponge : MonoBehaviour
                 TargetHouse.isRainSFXPlaying = false;
             }
             RainVFX.Stop();
-            StopCoroutine(ConsumeCoroutine);
+            if(ConsumeCoroutine != null)
+                StopCoroutine(ConsumeCoroutine);
             
             if (TargetHouse && TargetHouse.isSavedRange())
             {
